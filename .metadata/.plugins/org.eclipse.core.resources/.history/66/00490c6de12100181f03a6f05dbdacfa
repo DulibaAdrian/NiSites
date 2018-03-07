@@ -1,0 +1,5 @@
+ackage persistence;
+
+public interface PersistenceJPAConfig {
+
+}
