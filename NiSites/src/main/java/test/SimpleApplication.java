@@ -20,7 +20,6 @@ public class SimpleApplication {
 		user.setEmail("secondEmail");
 		user.setPassword("pass");
 		user.setCreationDate(new Date());
-		user.setSiteId(1);
 		userRepository.save(user);
 		ctx.close();
 	}

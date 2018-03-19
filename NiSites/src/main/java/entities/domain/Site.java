@@ -1,53 +1,43 @@
 package entities.domain;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "Site")
-public class Site implements Serializable {
-	private static final long serialVersionUID = 4628466944459883435L;
+public class Site {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Integer id;
-
-	private Integer pageId;
 	private Date creationDate;
-	private Integer userId;
-	//private Set<User> userList;
-	//@OneToMany(cascade = CascadeType.ALL , orphanRemoval = true)
-	
-  /*  @OneToMany(mappedBy="site")
-	private Set<Page> pageList;*/
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_SITE", joinColumns = { @JoinColumn(name = "SITE_ID") }, inverseJoinColumns = { @JoinColumn(name = "USER_ID") })
+	private Set<User> userList;
+	
+    @OneToMany(mappedBy = "site")
+	private Set<Page> pageList;
+
+    public Site(){
+    	this.userList = new HashSet<User>();
+    	this.pageList = new HashSet<Page>();
+    }
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getPageId() {
-		return pageId;
-	}
-
-	public void setPageId(Integer pageId) {
-		this.pageId = pageId;
 	}
 
 	public Date getCreationDate() {
@@ -58,29 +48,11 @@ public class Site implements Serializable {
 		this.creationDate = creationDate;
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
-/*	public Set<User> getUserList() {
+	public Set<User> getUserList() {
 		return userList;
-	}*/
-
-	//@ManyToMany(cascade = CascadeType.ALL)
-	//@JoinTable(name = "UserToSite", joinColumns = @JoinColumn(name = "SiteId", referencedColumnName = "ïd") , inverseJoinColumns = @JoinColumn(name = "UserId", referencedColumnName = "id") )
-	/*public void setUserList(Set<User> userList) {
-		this.userList = userList;
-	}*/
-
-	/*public Set<Page> getPageList() {
-		return pageList;
 	}
 
-	public void setPageList(Set<Page> pageList) {
-		this.pageList = pageList;
-	}*/
+	public void setUserList(Set<User> userList) {
+		this.userList = userList;
+	}
 }

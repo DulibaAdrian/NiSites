@@ -1,31 +1,21 @@
 package entities.domain;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
-public class User implements Serializable {
-	private static final long serialVersionUID = 4628466944459883435L;
+public class User{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id	
+	@GeneratedValue
 	private Integer id;
 	private String name;
 	private String email;
 	private String password;
 	private Date creationDate;
-	private Integer siteId;
-
-	//private ArrayList<Site> siteList;
 
 	public String getName() {
 		return name;
@@ -66,21 +56,4 @@ public class User implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getSiteId() {
-		return siteId;
-	}
-
-	public void setSiteId(Integer siteId) {
-		this.siteId = siteId;
-	}
-
-/*	@ManyToMany(mappedBy="userList")
-	public ArrayList<Site> getSiteList() {
-		return siteList;
-	}
-
-	public void setSiteList(ArrayList<Site> siteList) {
-		this.siteList = siteList;
-	}*/
 }
