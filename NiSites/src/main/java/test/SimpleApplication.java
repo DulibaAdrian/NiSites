@@ -1,17 +1,22 @@
 package test;
 
-import java.util.Date;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import rest.services.UserController;
 
-import entities.domain.User;
-import entities.repositoryInterfaces.IUserRepository;
-
+@SpringBootApplication
+@ComponentScan(basePackages ={"rest.services"} ,basePackageClasses =UserController.class)
+@EntityScan({"entities.domain"})
+@EnableJpaRepositories("entities.repositoryInterfaces")
 public class SimpleApplication {
 
 	public static void main(String[] args) {
 		
-		ClassPathXmlApplicationContext ctx = 
+	/*	ClassPathXmlApplicationContext ctx = 
 				new ClassPathXmlApplicationContext("classpath:/spring.xml");
 
 		IUserRepository userRepository = ctx.getBean(IUserRepository.class);		
@@ -21,6 +26,8 @@ public class SimpleApplication {
 		user.setPassword("pass");
 		user.setCreationDate(new Date());
 		userRepository.save(user);
-		ctx.close();
+		ctx.close();*/
+        SpringApplication.run(SimpleApplication.class, args);
+
 	}
 }
