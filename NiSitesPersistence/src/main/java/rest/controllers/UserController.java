@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import entities.domain.User;
 import interfaces.IUserRepository;
+import mapper.Mapper;
 
 @RestController
 @RequestMapping("/api/user")
@@ -32,6 +33,9 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
 	public void editUser(@PathVariable Integer userId, @RequestBody User user) {
-		 //this.userRepository.save(user);
+		User usertToUpdate = Mapper.getUserMapping().map(user, User.class);
+		usertToUpdate.setId(userId);
+		usertToUpdate.setCreationDate(userRepository.findOne(userId).getCreationDate());
+		this.userRepository.save(usertToUpdate);
 	}
 }

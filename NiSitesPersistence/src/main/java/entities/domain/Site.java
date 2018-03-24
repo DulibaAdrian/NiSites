@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import lombok.NonNull;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -19,19 +22,22 @@ public class Site {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@NonNull
 	private Date creationDate;
-
+	@NonNull
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "USER_SITE", joinColumns = { @JoinColumn(name = "SITE_ID") }, inverseJoinColumns = { @JoinColumn(name = "USER_ID") })
+	@JoinTable(name = "USER_SITE", joinColumns = { @JoinColumn(name = "SITE_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "USER_ID") })
 	private Set<User> userList;
-	
-    @OneToMany(mappedBy = "site")
+
+	@OneToMany(mappedBy = "site")
 	private Set<Page> pageList;
 
-    public Site(){
-    	this.userList = new HashSet<User>();
-    	this.pageList = new HashSet<Page>();
-    }
+	public Site() {
+		this.userList = new HashSet<User>();
+		this.pageList = new HashSet<Page>();
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -54,5 +60,13 @@ public class Site {
 
 	public void setUserList(Set<User> userList) {
 		this.userList = userList;
+	}
+
+	public Set<Page> getPageList() {
+		return this.pageList;
+	}
+
+	public void setPageList(Set<Page> pageList) {
+		this.pageList = pageList;
 	}
 }

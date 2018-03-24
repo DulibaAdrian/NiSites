@@ -6,40 +6,55 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import lombok.NonNull;
-
 @Entity
 public class User {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@NonNull
 	private String name;
-	@NonNull
 	private String email;
-	@NonNull
 	private String password;
-	@NonNull
 	private Date creationDate;
 
-	public String getName() {
-		return this.name;
+	public Date getCreationDate() {
+		return creationDate;
 	}
 
-	public String getEmail() {
-		return this.email;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
-	public Date getCreationDate() {
-		return this.creationDate;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public User() {
-		this.creationDate = new Date();
+	public String getEmail() {
+		return email;
 	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 }

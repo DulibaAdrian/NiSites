@@ -14,6 +14,11 @@
 	</parent>
 
 	<dependencies>
+<dependency>
+   <groupId>ma.glasnost.orika</groupId>
+   <artifactId>orika-core</artifactId>
+   <version>1.4.2</version><!-- or latest version -->
+</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
