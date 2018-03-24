@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
-<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
-<fullyQualifiedTypeName name="java.lang.Override"/>
-<fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-<fullyQualifiedTypeName name="test.TestRepoClass"/>
 <fullyQualifiedTypeName name="test.RepositoryTest"/>
 <fullyQualifiedTypeName name="org.hibernate.mapping.Set"/>
 <fullyQualifiedTypeName name="javax.persistence.ElementCollection"/>
@@ -16,7 +9,6 @@
 <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
 <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
 <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-<fullyQualifiedTypeName name="entities.domain.Site"/>
 <fullyQualifiedTypeName name="javax.persistence.Id"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.persistence.JoinTable"/>
@@ -49,15 +41,23 @@
 <fullyQualifiedTypeName name="javax.persistence.TemporalType"/>
 <fullyQualifiedTypeName name="javax.persistence.Column"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Required"/>
 <fullyQualifiedTypeName name="lombok.Setter"/>
 <fullyQualifiedTypeName name="lombok.Getter"/>
 <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
 <fullyQualifiedTypeName name="lombok.NonNull"/>
 <fullyQualifiedTypeName name="lombok.Data"/>
 <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-<fullyQualifiedTypeName name="entities.domain.User"/>
 <fullyQualifiedTypeName name="lombok.AccessLevel"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Required"/>
+<fullyQualifiedTypeName name="interfaces.IPageRepository"/>
+<fullyQualifiedTypeName name="entities.domain.Page"/>
+<fullyQualifiedTypeName name="interfaces.ISiteRepository"/>
+<fullyQualifiedTypeName name="entities.domain.Site"/>
+<fullyQualifiedTypeName name="entities.domain.User"/>
+<fullyQualifiedTypeName name="ma.glasnost.orika.impl.DefaultMapperFactory"/>
+<fullyQualifiedTypeName name="ma.glasnost.orika.MapperFactory"/>
+<fullyQualifiedTypeName name="ma.glasnost.orika.MapperFacade"/>
+<fullyQualifiedTypeName name="mapper.Mapper"/>
 </qualifiedTypeNameHistroy>
