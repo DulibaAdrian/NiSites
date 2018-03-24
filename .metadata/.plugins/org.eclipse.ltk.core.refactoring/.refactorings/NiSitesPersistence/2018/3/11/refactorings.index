@@ -1,0 +1,18 @@
+1521130768857	Delete elements
+1521130870222	Encapsulate field 'userList'
+1521131434241	Encapsulate field 'siteList'
+1521131710930	Encapsulate field 'pageList'
+1521131823504	Rename type 'StudentRepository'
+1521131863882	Rename type 'TeacherRepository'
+1521132464828	Rename package 'entities.repository'
+1521132525532	Rename type 'PageRepository'
+1521132532866	Rename type 'SiteRepository'
+1521132541865	Rename type 'UserRepository'
+1521132853623	Delete element
+1521409997273	Delete element
+1521411840142	Encapsulate field 'site'
+1521412948588	Encapsulate field 'siteId'
+1521415238459	Rename resource 'jdbc.properties'
+1521415492988	Delete element
+1521416389951	Encapsulate field 'siteId'
+1521416618459	Delete element

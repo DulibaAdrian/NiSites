@@ -1,0 +1,15 @@
+1521496386277	Encapsulate field 'userList'
+1521552267099	Rename package 'persistence'
+1521585373997	Delete element
+1521624099179	Copy compilation unit
+1521624112707	Delete element
+1521734575586	Rename package 'entities.repositoryInterfaces'
+1521738759821	Rename package 'rest.services'
+1521854538927	Rename type 'Mapper'
+1521854578100	Rename type 'UserMapper'
+1521857498968	Delete element
+1521857570744	Encapsulate field 'creationDate'
+1521857574172	Encapsulate field 'password'
+1521857577449	Encapsulate field 'email'
+1521857582571	Encapsulate field 'name'
+1521858706229	Encapsulate field 'id'

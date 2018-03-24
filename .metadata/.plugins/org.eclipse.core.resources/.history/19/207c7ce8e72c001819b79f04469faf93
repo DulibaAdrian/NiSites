@@ -1,0 +1,14 @@
+package entities.repositoryInterfaces;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import entities.domain.User;
+
+
+@Repository
+@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+
+public interface IUserRepository extends JpaRepository<User, Integer>{
+
+}

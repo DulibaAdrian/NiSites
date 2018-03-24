@@ -1,0 +1,41 @@
+package entities.domain;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import lombok.NonNull;
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	private String name;
+	private String email;
+	private String password;
+	private Date creationDate;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public Date getCreationDate() {
+		return this.creationDate;
+	}
+
+	public User() {
+		this.creationDate = new Date();
+	}
+}

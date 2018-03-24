@@ -1,0 +1,18 @@
+package mapper;
+
+import entities.domain.User;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
+public class Mapper {
+	public MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+
+	public Mapper() {
+	}
+
+	public MapperFactory setUserMapping() {
+		Mapper.mapperFactory.classMap(User.class, User.class).field("name", "name").field("email", "email")
+				.field("password", "password").field("creationDate", "creationDate").byDefault().register();
+		return mapperFactory;
+	}
+}

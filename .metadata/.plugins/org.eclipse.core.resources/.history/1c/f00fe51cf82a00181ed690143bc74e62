@@ -1,0 +1,51 @@
+package test;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import entities.domain.User;
+import entities.repositoryInterfaces.IUserRepository;
+
+/** 
+ * Service layer.
+ * Specify transactional behavior and mainly
+ * delegate calls to Repository.
+ */
+@Component
+public class RepositoryTest {
+
+	@Autowired
+	private IUserRepository userRepository;
+
+	@Transactional
+	public void add(User user) {
+		userRepository.save(user);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Product> findAll() {
+		return userRepository.findAll();
+	}
+
+	@Transactional
+	public void addAll(Collection<Product> products) {
+		for (Product product : products) {
+			userRepository.save(product);
+		}
+	}
+
+	@Transactional(readOnly=true)
+	public List<Product> findByNameIs(String name) {
+		return userRepository.findByNameIs(name);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Product> findByNameContainingIgnoreCase(String searchString) {
+		return userRepository.findByNameContainingIgnoreCase(searchString);
+	}
+}
+

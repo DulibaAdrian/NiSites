@@ -1,0 +1,45 @@
+package entities.domain;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+import org.springframework.beans.factory.annotation.Required;
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	@Required
+	private String name;
+	@Required
+	private String email;
+	@Required
+	private String password;
+	@Required
+	private Date creationDate;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public Date getCreationDate() {
+		return this.creationDate;
+	}
+
+	public User() {
+		this.creationDate = new Date();
+	}
+}
