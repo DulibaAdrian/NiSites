@@ -2,22 +2,32 @@ package entities.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Page {
 
-	@Id	
+	@Id
 	@GeneratedValue
 	private Integer id;
 	private String content;
 	private Date creationDate;
+	private Integer pageNumber;
+	
+	@ManyToOne(fetch=FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE })
+    @JsonBackReference
+	private Site site;
 
-    @ManyToOne
-    private Site site;
+	public Page() {
+		this.creationDate = new Date();
+	}
 
 	public Integer getId() {
 		return id;
@@ -28,7 +38,7 @@ public class Page {
 	}
 
 	public String getContent() {
-		return content;
+		return this.content;
 	}
 
 	public void setContent(String content) {
@@ -36,7 +46,7 @@ public class Page {
 	}
 
 	public Date getCreationDate() {
-		return creationDate;
+		return this.creationDate;
 	}
 
 	public void setCreationDate(Date creationDate) {
@@ -44,10 +54,18 @@ public class Page {
 	}
 
 	public Site getSite() {
-		return site;
+		return this.site;
 	}
 
 	public void setSite(Site site) {
 		this.site = site;
+	}
+
+	public Integer getPageNumber() {
+		return this.pageNumber;
+	}
+
+	public void setPageNumber(Integer pageNumber) {
+		this.pageNumber = pageNumber;
 	}
 }

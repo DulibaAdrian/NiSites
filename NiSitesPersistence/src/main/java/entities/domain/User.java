@@ -17,6 +17,10 @@ public class User {
 	private String password;
 	private Date creationDate;
 
+	public User(){
+		this.creationDate = new Date();
+	}
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}

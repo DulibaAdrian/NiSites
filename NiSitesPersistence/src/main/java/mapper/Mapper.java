@@ -14,4 +14,5 @@ public class Mapper {
 				.field("email", "email").byDefault().register();
 		return mapperFactory.getMapperFacade();
 	}
+
 }

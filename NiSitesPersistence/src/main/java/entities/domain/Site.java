@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.NonNull;
 
 import javax.persistence.JoinColumn;
@@ -23,6 +25,8 @@ public class Site {
 	@GeneratedValue
 	private Integer id;
 	@NonNull
+	private String url;
+	@NonNull
 	private Date creationDate;
 	@NonNull
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -30,12 +34,14 @@ public class Site {
 			@JoinColumn(name = "USER_ID") })
 	private Set<User> userList;
 
-	@OneToMany(mappedBy = "site")
+	@OneToMany(mappedBy = "site", orphanRemoval=true)
+    @JsonManagedReference
 	private Set<Page> pageList;
 
 	public Site() {
 		this.userList = new HashSet<User>();
 		this.pageList = new HashSet<Page>();
+		this.creationDate = new Date();
 	}
 
 	public Integer getId() {
@@ -68,5 +74,13 @@ public class Site {
 
 	public void setPageList(Set<Page> pageList) {
 		this.pageList = pageList;
+	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
