@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import entities.domain.Page;
+import entities.domain.Site;
 import interfaces.IPageRepository;
+import interfaces.ISiteRepository;
 
 @RestController
 @RequestMapping("/api/page")
@@ -19,7 +21,9 @@ public class PageController {
 
 	@Autowired
 	private IPageRepository pageRepository;
-
+	@Autowired
+	private ISiteRepository siteRepository;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<Page> getPagesList() {
 		return pageRepository.findAll();
@@ -31,7 +35,15 @@ public class PageController {
 		pageToUpdate.setContent(page.getContent());
 		this.pageRepository.save(pageToUpdate);
 	}
-	
+
+	@RequestMapping(value = "/{siteId}", method = RequestMethod.POST)
+	public void addPage(@PathVariable Integer siteId, @RequestBody Page page) {
+		Site site=this.siteRepository.findOne(siteId);
+		site.getPageList().add(page);
+		page.setSite(site);
+		this.pageRepository.save(page);
+	}
+
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
 	public void deletePage(@PathVariable Integer pageId) {
 		this.pageRepository.delete(pageId);

@@ -1,10 +1,18 @@
 package entities.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class User {
@@ -16,11 +24,25 @@ public class User {
 	private String email;
 	private String password;
 	private Date creationDate;
+	@ManyToMany(mappedBy = "userList" , cascade = CascadeType.ALL)
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class, 
+			  property = "id")
+	private Set<Site> sites;
 
-	public User(){
+	public User() {
 		this.creationDate = new Date();
+		this.sites = new HashSet<Site>();
 	}
-	
+
+	public Set<Site> getSiteList() {
+		return this.sites;
+	}
+
+	public void setSiteList(Set<Site> sites) {
+		this.sites = sites;
+	}
+
 	public Date getCreationDate() {
 		return creationDate;
 	}

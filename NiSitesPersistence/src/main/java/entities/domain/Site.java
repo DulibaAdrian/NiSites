@@ -12,7 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.NonNull;
 
@@ -32,6 +34,9 @@ public class Site {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SITE", joinColumns = { @JoinColumn(name = "SITE_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "USER_ID") })
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class, 
+			  property = "id")
 	private Set<User> userList;
 
 	@OneToMany(mappedBy = "site", orphanRemoval=true)
