@@ -1,0 +1,32 @@
+package repository.implementations;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import entities.domain.User;
+import repository.interfaces.IuserRepositoryCustom;
+
+
+@Repository
+@Transactional(readOnly = true)
+public class UserRepositoryImpl implements IuserRepositoryCustom{
+
+	@PersistenceContext
+    EntityManager entityManager;
+    @Override
+	public List<User> getUserById(String uuid) {
+		
+	        Query query = entityManager.createNativeQuery("SELECT em.* FROM spring_data_jpa_example.employee as em " +
+	                "WHERE em.firstname LIKE ?", Employee.class);
+	        query.setParameter(1, firstName + "%");
+	        return query.getResultList();
+	}
+    
+
+}

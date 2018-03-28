@@ -1,0 +1,5 @@
+package repository.implementations;
+
+public class UserRepositoryImpl {
+
+}

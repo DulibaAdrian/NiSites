@@ -1,39 +1,42 @@
 package entities.domain;
 
 import java.util.Date;
-
+import java.util.UUID;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Page {
 
 	@Id
-	@GeneratedValue
-	private Integer id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(name = "id", columnDefinition = "BINARY(16)")
+	private UUID id;
 	private String content;
 	private Date creationDate;
 	private Integer pageNumber;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade={ CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE })
-    @JsonBackReference
+	@ManyToOne(cascade={ CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE })
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Site site;
 
 	public Page() {
 		this.creationDate = new Date();
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

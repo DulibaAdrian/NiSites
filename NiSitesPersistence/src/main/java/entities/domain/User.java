@@ -3,14 +3,17 @@ package entities.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -18,16 +21,16 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class User {
 
 	@Id
-	@GeneratedValue
-	private Integer id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(name = "id", columnDefinition = "BINARY(16)")
+	private UUID id;
 	private String name;
 	private String email;
 	private String password;
 	private Date creationDate;
-	@ManyToMany(mappedBy = "userList" , cascade = CascadeType.ALL)
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class, 
-			  property = "id")
+	@ManyToMany(mappedBy = "userList", cascade = CascadeType.ALL)
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Set<Site> sites;
 
 	public User() {
@@ -75,11 +78,11 @@ public class User {
 		this.name = name;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

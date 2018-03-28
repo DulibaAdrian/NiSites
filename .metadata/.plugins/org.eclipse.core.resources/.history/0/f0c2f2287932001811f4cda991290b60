@@ -1,0 +1,5 @@
+package interfaces;
+
+public interface IuserRepositoryCustom {
+    List<Employee> getFirstNamesLike(String firstName);
+}

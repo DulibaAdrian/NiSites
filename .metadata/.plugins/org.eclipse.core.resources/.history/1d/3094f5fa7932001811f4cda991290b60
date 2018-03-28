@@ -1,0 +1,17 @@
+package repository.implementations;
+
+import java.util.List;
+
+import entities.domain.User;
+import repository.interfaces.IuserRepositoryCustom;
+
+public class UserRepositoryImpl implements IuserRepositoryCustom{
+
+	@Override
+	public List<User> getFirstNamesLike(String uuid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

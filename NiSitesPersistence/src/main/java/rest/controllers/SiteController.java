@@ -1,6 +1,7 @@
 package rest.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;
-import interfaces.IPageRepository;
-import interfaces.ISiteRepository;
-import interfaces.IUserRepository;
+import repository.interfaces.IPageRepository;
+import repository.interfaces.ISiteRepository;
+import repository.interfaces.IUserRepository;
 
 @RestController
 @RequestMapping("/api/site")
@@ -34,7 +35,7 @@ public class SiteController {
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
-	public void addSite(@PathVariable Integer userId, @RequestBody Site site) {
+	public void addSite(@PathVariable UUID userId, @RequestBody Site site) {
 		Page homePage = new Page();
 		homePage.setPageNumber(1);
 		homePage.setContent(
@@ -48,14 +49,14 @@ public class SiteController {
 	}
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.PUT)
-	public void editSite(@PathVariable Integer siteId, @RequestBody Site site) {
+	public void editSite(@PathVariable UUID siteId, @RequestBody Site site) {
 		Site siteToUpdate = siteRepository.findOne(siteId);
 		siteToUpdate.setUrl(site.getUrl());
 		this.siteRepository.save(siteToUpdate);
 	}
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
-	public void deleteSite(@PathVariable Integer siteId) {
+	public void deleteSite(@PathVariable UUID siteId) {
 		this.siteRepository.delete(siteId);
 	}
 }

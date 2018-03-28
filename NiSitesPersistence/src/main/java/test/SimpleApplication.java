@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages ={"rest.controllers"})
 @EntityScan({"entities.domain"})
-@EnableJpaRepositories("interfaces")
+@EnableJpaRepositories({"repository.interfaces","repository.implementations"})
 public class SimpleApplication {
 
 	public static void main(String[] args) {
 		
         SpringApplication.run(SimpleApplication.class, args);
-
+        
 	}
 }

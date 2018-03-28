@@ -1,0 +1,10 @@
+package repository.interfaces;
+
+import java.util.UUID;
+
+import entities.domain.User;
+
+public interface IuserRepositoryCustom {
+
+	User getUserById(UUID uuid);
+}

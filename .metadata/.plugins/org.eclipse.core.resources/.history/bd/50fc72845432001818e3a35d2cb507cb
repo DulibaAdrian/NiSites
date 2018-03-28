@@ -1,0 +1,14 @@
+package test;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SimpleApplication {
+
+	public static void main(String[] args) {
+		 RestTemplate restTemplate = new RestTemplate();
+	        Quote quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", Quote.class);
+	   
+	}
+
+}

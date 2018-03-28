@@ -1,6 +1,7 @@
 package rest.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import entities.domain.Page;
 import entities.domain.Site;
-import interfaces.IPageRepository;
-import interfaces.ISiteRepository;
+import repository.interfaces.IPageRepository;
+import repository.interfaces.ISiteRepository;
 
 @RestController
 @RequestMapping("/api/page")
@@ -30,14 +31,14 @@ public class PageController {
 	}
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
-	public void editPage(@PathVariable Integer pageId, @RequestBody Page page) {
+	public void editPage(@PathVariable UUID pageId, @RequestBody Page page) {
 		Page pageToUpdate = pageRepository.findOne(pageId);
 		pageToUpdate.setContent(page.getContent());
 		this.pageRepository.save(pageToUpdate);
 	}
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.POST)
-	public void addPage(@PathVariable Integer siteId, @RequestBody Page page) {
+	public void addPage(@PathVariable UUID siteId, @RequestBody Page page) {
 		Site site=this.siteRepository.findOne(siteId);
 		site.getPageList().add(page);
 		page.setSite(site);
@@ -45,7 +46,7 @@ public class PageController {
 	}
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
-	public void deletePage(@PathVariable Integer pageId) {
+	public void deletePage(@PathVariable UUID pageId) {
 		this.pageRepository.delete(pageId);
 	}
 }

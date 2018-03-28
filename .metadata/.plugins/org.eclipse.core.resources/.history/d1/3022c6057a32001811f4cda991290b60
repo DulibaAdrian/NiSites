@@ -1,0 +1,24 @@
+package repository.implementations;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
+
+import entities.domain.User;
+import repository.interfaces.IuserRepositoryCustom;
+
+
+@Repository
+@Transactional(readOnly = true)
+public class UserRepositoryImpl implements IuserRepositoryCustom{
+
+	@Override
+	public List<User> getFirstNamesLike(String uuid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}
