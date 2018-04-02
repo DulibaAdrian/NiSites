@@ -1,0 +1,7 @@
+package Mapper;
+
+public class ModelMapperConfigurations {
+	
+	ModelMapper modelMapper = new ModelMapper();
+
+}

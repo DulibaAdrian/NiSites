@@ -1,5 +1,6 @@
 package rest.controllers;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import Mapper.ModelMapperConfigurations;
+import business.DTO.PageDTO;
+import business.DTO.SiteDTO;
+import business.DTO.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;
@@ -29,9 +34,16 @@ public class SiteController {
 	@Autowired
 	private IUserRepository userRepository;
 	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Site> getSitesList() {
-		return siteRepository.findAll();
+	public List<SiteDTO> getSitesList() {
+		List<Site> siteList = this.siteRepository.findAll();
+		List<SiteDTO> siteListDTO = ModelMapperConfigurations.mapAll(siteList, SiteDTO.class);
+		for (int i = 0; i < siteListDTO.size(); i++) {
+			mapSiteHelper(siteListDTO.get(i), siteList.get(i));
+		}
+		return siteListDTO;
+		
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
@@ -48,15 +60,19 @@ public class SiteController {
 		this.pageRepository.save(homePage);
 	}
 
-	@RequestMapping(value = "/{siteId}", method = RequestMethod.PUT)
-	public void editSite(@PathVariable UUID siteId, @RequestBody Site site) {
-		Site siteToUpdate = siteRepository.findOne(siteId);
-		siteToUpdate.setUrl(site.getUrl());
-		this.siteRepository.save(siteToUpdate);
-	}
-
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
 	public void deleteSite(@PathVariable UUID siteId) {
 		this.siteRepository.delete(siteId);
+	}
+	
+	private void mapSiteHelper(SiteDTO siteDTO, Site site) {
+		siteDTO.setUserList(new HashSet<UserDTO>(ModelMapperConfigurations.mapAll(site.getUserList(), UserDTO.class)));
+		siteDTO.setPageList(new HashSet<PageDTO>(ModelMapperConfigurations.mapAll(site.getPageList(), PageDTO.class)));
+		for (UserDTO user : siteDTO.getUserList()) {
+			user.setSites(new HashSet<SiteDTO>());
+		}
+		for (PageDTO page : siteDTO.getPageList()) {
+			page.setSite(null);
+		}
 	}
 }

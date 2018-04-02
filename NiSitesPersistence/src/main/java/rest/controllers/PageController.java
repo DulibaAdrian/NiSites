@@ -1,16 +1,17 @@
 package rest.controllers;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import Mapper.ModelMapperConfigurations;
+import business.DTO.PageDTO;
+import business.DTO.SiteDTO;
+import business.DTO.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import repository.interfaces.IPageRepository;
@@ -24,22 +25,19 @@ public class PageController {
 	private IPageRepository pageRepository;
 	@Autowired
 	private ISiteRepository siteRepository;
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<Page> getPagesList() {
-		return pageRepository.findAll();
-	}
 
-	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
-	public void editPage(@PathVariable UUID pageId, @RequestBody Page page) {
-		Page pageToUpdate = pageRepository.findOne(pageId);
-		pageToUpdate.setContent(page.getContent());
-		this.pageRepository.save(pageToUpdate);
+	@RequestMapping(value = "/{pageId}", method = RequestMethod.GET)
+	public PageDTO getPageById(@PathVariable UUID pageId) {
+		Page page = pageRepository.findOne(pageId);
+		PageDTO pageDTO = ModelMapperConfigurations.map(page, PageDTO.class);
+		mapPageHelper(pageDTO, page);
+		return pageDTO;
 	}
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.POST)
-	public void addPage(@PathVariable UUID siteId, @RequestBody Page page) {
-		Site site=this.siteRepository.findOne(siteId);
+	public void addPage(@PathVariable UUID siteId, @RequestBody PageDTO pageDTO) {
+		Site site = this.siteRepository.findOne(siteId);
+		Page page = ModelMapperConfigurations.map(pageDTO, Page.class);
 		site.getPageList().add(page);
 		page.setSite(site);
 		this.pageRepository.save(page);
@@ -48,5 +46,13 @@ public class PageController {
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
 	public void deletePage(@PathVariable UUID pageId) {
 		this.pageRepository.delete(pageId);
+	}
+
+	private void mapPageHelper(PageDTO pageDTO, Page page) {
+		pageDTO.setSite(ModelMapperConfigurations.map(page.getSite(), SiteDTO.class));
+		pageDTO.getSite().setPageList(new HashSet<>());
+		pageDTO.getSite().setUserList(
+				(new HashSet<UserDTO>(ModelMapperConfigurations.mapAll(page.getSite().getUserList(), UserDTO.class))));
+
 	}
 }
