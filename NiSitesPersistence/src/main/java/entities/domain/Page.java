@@ -28,7 +28,7 @@ public class Page {
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Site site;
 
-	public Page() {
+	public Page() { 
 		this.creationDate = new Date();
 	}
 

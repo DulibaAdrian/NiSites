@@ -34,9 +34,7 @@ public class Site {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "USER_SITE", joinColumns = { @JoinColumn(name = "SITE_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "USER_ID") })
-	@JsonIdentityInfo(
-			  generator = ObjectIdGenerators.PropertyGenerator.class, 
-			  property = "id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Set<User> userList;
 
 	@OneToMany(mappedBy = "site", orphanRemoval=true)

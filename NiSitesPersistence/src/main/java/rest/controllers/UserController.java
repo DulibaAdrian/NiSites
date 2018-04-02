@@ -2,7 +2,6 @@ package rest.controllers;
 
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import entities.domain.User;
-import mapper.Mapper;
 import repository.interfaces.IUserRepository;
 
 @RestController
@@ -39,8 +36,10 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
 	public void editUser(@PathVariable UUID userId, @RequestBody User user) {
-		User usertToUpdate = Mapper.getUserMapping().map(user, User.class);
-		usertToUpdate.setId(userId);
-		this.userRepository.save(usertToUpdate);
+		User userToUpdate = this.userRepository.findOne(userId);
+		userToUpdate.setEmail(user.getEmail());
+		userToUpdate.setName(user.getName());
+		userToUpdate.setPassword(user.getPassword());
+		this.userRepository.save(userToUpdate);
 	}
 }

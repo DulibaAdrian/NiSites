@@ -1,0 +1,15 @@
+package business.DTO;
+
+import java.util.Date;
+import java.util.UUID;
+
+
+public class PageDTO {
+	private UUID id;
+	private String content;
+	private Date creationDate;
+	private Integer pageNumber;
+	private SiteDTO site;
+
+	
+}

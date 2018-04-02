@@ -56,12 +56,14 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="business.DTO"/>
 			<item value="business.layer"/>
 		</list>
 		<list key="groupId">
 			<item value="business"/>
 		</list>
 		<list key="artifactId">
+			<item value="DTO"/>
 			<item value="layer"/>
 		</list>
 		<list key="projectNameTemplate">

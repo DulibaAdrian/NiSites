@@ -1,0 +1,18 @@
+1522585662185	Delete element
+1522585910907	Delete element
+1522618624527	Encapsulate field 'id'
+1522618629063	Encapsulate field 'content'
+1522618634041	Encapsulate field 'creationDate'
+1522618638502	Encapsulate field 'pageNumber'
+1522618642717	Encapsulate field 'site'
+1522619013783	Encapsulate field 'id'
+1522619018140	Encapsulate field 'url'
+1522619022206	Encapsulate field 'creationDate'
+1522619026650	Encapsulate field 'userList'
+1522619030603	Encapsulate field 'pageList'
+1522619258548	Encapsulate field 'sites'
+1522619263733	Encapsulate field 'creationDate'
+1522619267553	Encapsulate field 'password'
+1522619271470	Encapsulate field 'email'
+1522619275804	Encapsulate field 'name'
+1522619280216	Encapsulate field 'id'

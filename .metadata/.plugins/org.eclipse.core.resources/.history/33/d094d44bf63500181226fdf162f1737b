@@ -1,0 +1,20 @@
+package business.DTO;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+public class UserDTO {
+	private UUID id;
+	private String name;
+	private String email;
+	private String password;
+	private Date creationDate;
+	private Set<SiteDTO> sites;
+
+	public UserDTO() {
+		this.creationDate = new Date();
+		this.sites = new HashSet<SiteDTO>();
+	}
+}
