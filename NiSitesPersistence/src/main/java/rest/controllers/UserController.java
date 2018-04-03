@@ -1,6 +1,5 @@
 package rest.controllers;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
-import business.DTO.PageDTO;
-import business.DTO.SiteDTO;
 import business.DTO.UserDTO;
 import entities.domain.User;
 import repository.interfaces.IUserRepository;
@@ -29,7 +26,7 @@ public class UserController {
 		List<User> userList = userRepository.findAll();
 		List<UserDTO> userListDTO = ModelMapperConfigurations.mapAll(userList, UserDTO.class);
 		for (int i = 0; i < userListDTO.size(); i++) {
-			mapUserHelper(userListDTO.get(i), userList.get(i));
+			ModelMapperConfigurations.mapUserHelper(userListDTO.get(i), userList.get(i));
 		}
 		return userListDTO;
 	}
@@ -38,7 +35,7 @@ public class UserController {
 	public UserDTO getUserById(@PathVariable UUID userId) {
 		User user = userRepository.findOne(userId);
 		UserDTO userDTO = ModelMapperConfigurations.map(user, UserDTO.class);
-		mapUserHelper(userDTO, user);
+		ModelMapperConfigurations.mapUserHelper(userDTO, user);
 		return userDTO;
 	}
 
@@ -46,17 +43,5 @@ public class UserController {
 	public void addUser(@RequestBody UserDTO userDTO) {
 		User user = ModelMapperConfigurations.map(userDTO, User.class);
 		this.userRepository.save(user);
-	}
-
-	private void mapUserHelper(UserDTO userDTO, User user) {
-		userDTO.setSites(new HashSet<SiteDTO>(ModelMapperConfigurations.mapAll(user.getSiteList(), SiteDTO.class)));
-		for (SiteDTO site : userDTO.getSites()) {
-			site.setUserList(new HashSet<UserDTO>());
-		}
-		for (SiteDTO site : userDTO.getSites()) {
-			for (PageDTO page : site.getPageList()) {
-				page.setSite(null);
-			}
-		}
 	}
 }
