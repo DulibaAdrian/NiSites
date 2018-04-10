@@ -19,7 +19,7 @@ import repository.interfaces.ISiteRepository;
 import repository.interfaces.IUserRepository;
 
 @RestController
-@RequestMapping("/api/site")
+@RequestMapping("/api/repository/site")
 public class SiteController {
 
 	@Autowired
@@ -44,7 +44,7 @@ public class SiteController {
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();
 		homePage.setPageNumber(1);
-		homePage.setContent(
+		homePage.setContent(				
 				"<!DOCTYPE html><html><head><title>Home Page</title></head>" + "<body>" + "</body>" + "</html>");
 		Site site = ModelMapperConfigurations.map(siteDTO, Site.class);
 		homePage.setSite(site);

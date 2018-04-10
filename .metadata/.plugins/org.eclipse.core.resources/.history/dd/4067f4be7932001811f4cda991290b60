@@ -1,9 +1,0 @@
-package interfaces;
-
-import java.util.List;
-
-import entities.domain.User;
-
-public interface IuserRepositoryCustom {
-	List<User> getFirstNamesLike(String uuid);
-}

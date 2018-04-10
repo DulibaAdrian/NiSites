@@ -15,7 +15,7 @@ import entities.domain.User;
 import repository.interfaces.IUserRepository;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/repository/user")
 public class UserController {
 
 	@Autowired

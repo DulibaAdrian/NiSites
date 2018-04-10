@@ -1,8 +1,0 @@
-package repository.implementations;
-
-import repository.interfaces.IuserRepositoryCustom;
-
-public class UserRepositoryImpl implements IuserRepositoryCustom{
-	
-
-}

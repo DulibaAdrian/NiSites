@@ -1,0 +1,14 @@
+package business;
+
+import org.springframework.web.client.RestTemplate;
+
+import business.DTO.UserDTO;
+
+public class UserLogic {
+
+	public void getUsers(){
+		RestTemplate restTemplate = new RestTemplate();
+		Set<User> = restTemplate.getForObject("http://localhost:8080/api/user/", UserDTO[].class);
+		return listUsers;
+	}
+}

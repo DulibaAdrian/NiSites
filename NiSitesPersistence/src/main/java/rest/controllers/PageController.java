@@ -15,7 +15,7 @@ import repository.interfaces.IPageRepository;
 import repository.interfaces.ISiteRepository;
 
 @RestController
-@RequestMapping("/api/page")
+@RequestMapping("/api/repository/page")
 public class PageController {
 
 	@Autowired

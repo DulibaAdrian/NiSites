@@ -1,8 +1,0 @@
-package repository.interfaces;
-
-import entities.domain.User;
-
-public interface IuserRepositoryCustom {
-
-	User getUserById(String uuid);
-}
