@@ -28,5 +28,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/DTO"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Mapper"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Entities"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

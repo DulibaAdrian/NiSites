@@ -1,9 +1,0 @@
-package Mapper;
-
-import org.modelmapper.ModelMapper;
-
-public class ModelMapperConfigurations {
-	
-	ModelMapper modelMapper = new ModelMapper();
-
-}
