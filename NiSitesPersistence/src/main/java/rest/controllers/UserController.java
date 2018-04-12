@@ -1,5 +1,6 @@
 package rest.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<UserDTO> getUserList() {
 		List<User> userList = userRepository.findAll();
-		List<UserDTO> userListDTO = ModelMapperConfigurations.mapAll(userList, UserDTO.class);
-		for (int i = 0; i < userListDTO.size(); i++) {
-			ModelMapperConfigurations.mapUserHelper(userListDTO.get(i), userList.get(i));
+		List<UserDTO> userListDTO = new ArrayList<>();
+		for (int i = 0; i < userList.size(); i++) {
+			userListDTO.add(ModelMapperConfigurations.mapUserHelper(userList.get(i)));
 		}
 		return userListDTO;
 	}
@@ -34,8 +35,7 @@ public class UserController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserById(@PathVariable UUID userId) {
 		User user = userRepository.findOne(userId);
-		UserDTO userDTO = ModelMapperConfigurations.map(user, UserDTO.class);
-		ModelMapperConfigurations.mapUserHelper(userDTO, user);
+		UserDTO userDTO = ModelMapperConfigurations.mapUserHelper(user);
 		return userDTO;
 	}
 

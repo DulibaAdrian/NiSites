@@ -27,12 +27,13 @@ public class ModelMapperConfigurations {
 	private ModelMapperConfigurations() {
 	}
 
-	public static void mapPageHelper(PageDTO pageDTO, Page page) {
+	public static PageDTO mapPageHelper(Page page) {
+		PageDTO pageDTO = ModelMapperConfigurations.map(page, PageDTO.class);
 		pageDTO.setSite(ModelMapperConfigurations.map(page.getSite(), SiteDTO.class));
 		pageDTO.getSite().setPageList(new HashSet<>());
 		pageDTO.getSite().setUserList(
 				(new HashSet<UserDTO>(ModelMapperConfigurations.mapAll(page.getSite().getUserList(), UserDTO.class))));
-
+		return pageDTO;
 	}
 
 	public static void mapSiteHelper(SiteDTO siteDTO, Site site) {
@@ -46,7 +47,8 @@ public class ModelMapperConfigurations {
 		}
 	}
 
-	public static void mapUserHelper(UserDTO userDTO, User user) {
+	public static UserDTO mapUserHelper(User user) {
+		UserDTO userDTO = ModelMapperConfigurations.map(user, UserDTO.class);
 		userDTO.setSites(new HashSet<SiteDTO>(ModelMapperConfigurations.mapAll(user.getSiteList(), SiteDTO.class)));
 		for (SiteDTO site : userDTO.getSites()) {
 			site.setUserList(new HashSet<UserDTO>());
@@ -56,6 +58,7 @@ public class ModelMapperConfigurations {
 				page.setSite(null);
 			}
 		}
+		return userDTO;
 	}
 
 	public static <D, T> D map(final T entity, Class<D> outClass) {

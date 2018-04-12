@@ -26,8 +26,7 @@ public class PageController {
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.GET)
 	public PageDTO getPageById(@PathVariable UUID pageId) {
 		Page page = pageRepository.findOne(pageId);
-		PageDTO pageDTO = ModelMapperConfigurations.map(page, PageDTO.class);
-		ModelMapperConfigurations.mapPageHelper(pageDTO, page);
+		PageDTO pageDTO = ModelMapperConfigurations.mapPageHelper(page);
 		return pageDTO;
 	}
 
@@ -44,5 +43,5 @@ public class PageController {
 	public void deletePage(@PathVariable UUID pageId) {
 		this.pageRepository.delete(pageId);
 	}
-	
+
 }
