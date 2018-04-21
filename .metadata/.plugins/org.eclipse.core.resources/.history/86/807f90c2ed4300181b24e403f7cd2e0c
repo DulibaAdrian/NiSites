@@ -1,0 +1,9 @@
+package rest.controllers;
+
+import entities.domain.User;
+
+public interface ICustomUserRepository{
+	
+	public User findOneByName(String name);
+
+}

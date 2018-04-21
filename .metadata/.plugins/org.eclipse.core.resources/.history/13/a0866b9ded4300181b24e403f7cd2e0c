@@ -1,0 +1,14 @@
+package repository.implementations;
+
+import entities.domain.User;
+import repository.implementations.ICustomUserRepository;
+
+public class UserCustomRepository implements ICustomUserRepository{
+
+	@Override
+	public User findOneByName(String name) {
+		// TODO Auto-generated method stub
+		return new User();
+	}
+
+}

@@ -37,7 +37,6 @@ public class SiteController {
 			ModelMapperConfigurations.mapSiteHelper(siteListDTO.get(i), siteList.get(i));
 		}
 		return siteListDTO;
-
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)

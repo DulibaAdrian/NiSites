@@ -24,7 +24,7 @@ public class UserController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<UserDTO> getUserList() {
-		List<User> userList = userRepository.findAll();
+		List<User> userList = this.userRepository.findAll();
 		List<UserDTO> userListDTO = new ArrayList<>();
 		for (int i = 0; i < userList.size(); i++) {
 			userListDTO.add(ModelMapperConfigurations.mapUserHelper(userList.get(i)));
@@ -34,11 +34,18 @@ public class UserController {
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserById(@PathVariable UUID userId) {
-		User user = userRepository.findOne(userId);
+		User user = this.userRepository.findOne(userId);
 		UserDTO userDTO = ModelMapperConfigurations.mapUserHelper(user);
 		return userDTO;
 	}
 
+	@RequestMapping(value = "/name/{userName}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public UserDTO getUserByName(@PathVariable String userName) {
+		User user = this.userRepository.findByName(userName);
+		UserDTO userDTO = ModelMapperConfigurations.mapUserHelper(user);
+		return userDTO;
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void addUser(@RequestBody UserDTO userDTO) {
 		User user = ModelMapperConfigurations.map(userDTO, User.class);
