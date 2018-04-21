@@ -30,5 +30,10 @@ public class SiteLogic {
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDto) {
 		restTemplate.postForEntity(this.siteUrl + userId.toString(), siteDto, SiteDTO.class);
 	}
-
+	
+	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
+	public void deleteSite(@PathVariable UUID siteId) {
+		restTemplate.delete(this.siteUrl + siteId.toString());
+	}
+	
 }

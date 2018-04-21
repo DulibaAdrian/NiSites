@@ -4,10 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-
 import business.DTO.PageDTO;
 import business.DTO.SiteDTO;
 import business.DTO.UserDTO;
@@ -18,7 +16,7 @@ import entities.domain.User;
 public class ModelMapperConfigurations {
 
 	private static ModelMapper modelMapper = new ModelMapper();
-
+    
 	static {
 		modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -72,5 +70,6 @@ public class ModelMapperConfigurations {
 	public static <S, D> D map(final S source, D destination) {
 		modelMapper.map(source, destination);
 		return destination;
-	}
+	} 
+
 }
