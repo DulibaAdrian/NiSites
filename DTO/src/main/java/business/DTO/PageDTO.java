@@ -54,5 +54,4 @@ public class PageDTO {
 	public void setSite(SiteDTO site) {
 		this.site = site;
 	}
-
 }

@@ -14,35 +14,35 @@ import business.DTO.UserDTO;
 @RequestMapping("/api/business/user")
 public class UserLogic {
 
-	String url = "http://localhost:8080/api/repository/user/";
+	String userUrl = "http://localhost:8080/api/repository/user/";
 	RestTemplate restTemplate = new RestTemplate();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO[] getUserList() {
-		UserDTO[] listUsers = restTemplate.getForObject(this.url, UserDTO[].class);
+		UserDTO[] listUsers = this.restTemplate.getForObject(this.userUrl, UserDTO[].class);
 		return listUsers;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void addUser(@RequestBody UserDTO userDTO) {
-		restTemplate.postForEntity(this.url, userDTO, UserDTO.class);
+		this.restTemplate.postForEntity(this.userUrl, userDTO, UserDTO.class);
 	}
 
 
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public void editUser(@RequestBody UserDTO userDTO) {
-		restTemplate.put(this.url, userDTO, UserDTO.class);
+		this.restTemplate.put(this.userUrl, userDTO, UserDTO.class);
 	}
 	
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserById(@PathVariable UUID userId) {
-		UserDTO userDTO = restTemplate.getForObject(this.url + userId.toString(), UserDTO.class);
+		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + userId.toString(), UserDTO.class);
 		return userDTO;
 	}
 
 	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserByEmail(@PathVariable String email) {
-		UserDTO userDTO = restTemplate.getForObject(this.url + "email/" + email, UserDTO.class);
+		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "email/" + email, UserDTO.class);
 		return userDTO;
 	}
 }

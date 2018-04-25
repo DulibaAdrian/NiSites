@@ -22,18 +22,18 @@ public class SiteLogic {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public SiteDTO[] getSiteList() {
-		SiteDTO[] listSites = restTemplate.getForObject(this.siteUrl, SiteDTO[].class);
+		SiteDTO[] listSites = this.restTemplate.getForObject(this.siteUrl, SiteDTO[].class);
 		return listSites;
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDto) {
-		restTemplate.postForEntity(this.siteUrl + userId.toString(), siteDto, SiteDTO.class);
+		this.restTemplate.postForEntity(this.siteUrl + userId.toString(), siteDto, SiteDTO.class);
 	}
 	
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
 	public void deleteSite(@PathVariable UUID siteId) {
-		restTemplate.delete(this.siteUrl + siteId.toString());
+		this.restTemplate.delete(this.siteUrl + siteId.toString());
 	}
 	
 }

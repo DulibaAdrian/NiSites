@@ -25,6 +25,15 @@ public class ModelMapperConfigurations {
 	private ModelMapperConfigurations() {
 	}
 
+	public static Page mapPageHelper(PageDTO pageDTO) {
+		Page page = ModelMapperConfigurations.map(pageDTO, Page.class);
+		page.setSite(ModelMapperConfigurations.map(pageDTO.getSite(), Site.class));
+		page.getSite().setPageList(new HashSet<>());
+		page.getSite().setUserList(
+				(new HashSet<User>(ModelMapperConfigurations.mapAll(pageDTO.getSite().getUserList(), User.class))));
+		return page;
+	}
+	
 	public static PageDTO mapPageHelper(Page page) {
 		PageDTO pageDTO = ModelMapperConfigurations.map(page, PageDTO.class);
 		pageDTO.setSite(ModelMapperConfigurations.map(page.getSite(), SiteDTO.class));

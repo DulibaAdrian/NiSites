@@ -1,0 +1,9 @@
+package business;
+
+import org.springframework.web.client.RestTemplate;
+
+public class PageLogic {
+	String siteUrl = "http://localhost:8080/api/repository/page/";
+	RestTemplate restTemplate = new RestTemplate();
+
+}
