@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;run.SimpleApplication&apos; to &apos;StartPersistence&apos;&#x0D;&#x0A;- Original project: &apos;NiSitesPersistence&apos;&#x0D;&#x0A;- Original element: &apos;run.SimpleApplication&apos;&#x0D;&#x0A;- Renamed element: &apos;run.StartPersistence&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SimpleApplication&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;run{SimpleApplication.java[SimpleApplication" matchStrategy="1" name="StartPersistence" qualified="false" references="true" similarDeclarations="false" stamp="1524671990140" textual="false" version="1.0"/>
+</session>
