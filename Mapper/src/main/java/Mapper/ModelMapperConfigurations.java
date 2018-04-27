@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import business.DTO.PageDTO;
-import business.DTO.SiteDTO;
-import business.DTO.UserDTO;
+
+import dto.PageDTO;
+import dto.SiteDTO;
+import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;

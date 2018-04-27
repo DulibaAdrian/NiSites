@@ -1,9 +1,0 @@
-package repository.interfaces;
-
-import entities.domain.User;
-
-public interface ICustomUserRepository {
-	
-	public User findOneByName(String name); //TO DO
-
-}

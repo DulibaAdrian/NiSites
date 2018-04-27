@@ -27,6 +27,7 @@ public class Site {
 	@Column(name = "id", columnDefinition = "BINARY(16)")
 	private UUID id;
 	@NonNull
+	@Column(unique=true)
 	private String url;
 	@NonNull
 	private Date creationDate;

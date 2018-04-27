@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
-import business.DTO.UserDTO;
+import dto.UserDTO;
 import entities.domain.User;
 import repository.interfaces.IUserRepository;
 
@@ -72,7 +72,12 @@ public class UserController {
 		}
 		this.userRepository.save(user);
 	}
-
+	
+	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
+	public void deleteUser(@PathVariable UUID userId){
+		this.userRepository.delete(userId);
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public void editUser(@RequestBody UserDTO newUser) {
 		User user = this.userRepository.findByEmail(newUser.getEmail());

@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import business.DTO.UserDTO;
+
+import dto.UserDTO;
 
 @RestController
 @RequestMapping("/api/business/user")
@@ -28,7 +29,6 @@ public class UserLogic {
 		this.restTemplate.postForEntity(this.userUrl, userDTO, UserDTO.class);
 	}
 
-
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public void editUser(@RequestBody UserDTO userDTO) {
 		this.restTemplate.put(this.userUrl, userDTO, UserDTO.class);
@@ -43,6 +43,12 @@ public class UserLogic {
 	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserByEmail(@PathVariable String email) {
 		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "email/" + email, UserDTO.class);
+		return userDTO;
+	}
+
+	@RequestMapping(value = "/name/{userName}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public UserDTO getUserByName(@PathVariable String userName) {
+		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "name/" + userName, UserDTO.class);
 		return userDTO;
 	}
 }

@@ -1,6 +1,0 @@
-package repository.interfaces;
-
-public class UserCustomRepository implements IUserRepository{
-
-	
-}

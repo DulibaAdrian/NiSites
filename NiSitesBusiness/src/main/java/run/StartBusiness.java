@@ -8,18 +8,17 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages ={"business"})
-@EntityScan({"business.DTO"})
+@EntityScan({"dto"})
 public class StartBusiness {
 
 	public static void main(String[] args) {
 
 		HashMap<String, Object> props = new HashMap<>();
-		props.put("server.port", 9999);
+		props.put("server.port", 8081);
 
 		new SpringApplicationBuilder()
 		    .sources(StartBusiness.class)                
 		    .properties(props)
 		    .run(args);
-		
 	}
 }

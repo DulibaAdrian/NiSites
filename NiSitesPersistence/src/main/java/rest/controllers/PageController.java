@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
-import business.DTO.PageDTO;
+import dto.PageDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import repository.interfaces.IPageRepository;

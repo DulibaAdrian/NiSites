@@ -57,6 +57,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="business.NiSitePresentation"/>
 			<item value="business.Models"/>
 			<item value="business.entities"/>
 			<item value="business.mapper"/>
@@ -67,6 +68,7 @@
 			<item value="business"/>
 		</list>
 		<list key="artifactId">
+			<item value="NiSitePresentation"/>
 			<item value="Models"/>
 			<item value="entities"/>
 			<item value="mapper"/>
