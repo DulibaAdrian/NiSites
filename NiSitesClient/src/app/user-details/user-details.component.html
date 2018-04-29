@@ -1,0 +1,15 @@
+﻿<div *ngIf="user">
+  <h2>{{user.name}} details:</h2>
+  <div>
+    <label>Email: </label> {{user.email}}
+  </div>
+  <div>
+    <label>First Name: </label> {{user.name}}
+  </div>
+  <div>
+    <label>Registration Date: </label> {{user.creationDate}}
+  </div>
+	
+  <button class="btn btn-danger" (click)="delete()">Delete</button>
+</div>
+

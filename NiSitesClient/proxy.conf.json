@@ -1,0 +1,6 @@
+﻿{
+    "/": {
+        "target": "http://localhost:8082/api/presentation/",
+        "secure": false
+    }
+}
