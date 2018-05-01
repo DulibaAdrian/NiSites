@@ -9,28 +9,17 @@ import { User } from './user';
 @Injectable()
 export class UserDataService {
 
-  private usersUrl = 'user/';  
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private usersUrl = 'user/';
 
   constructor(private http: Http) { }
 
-  getUsers(): Promise<User[]> {
-    return this.http.get(this.usersUrl)
-      .toPromise()
-      .then(response => response.json() as User[])
-      .catch(this.handleError);
+  getUsers() {
+    return this.http.get(this.usersUrl);
   }
 
-  delete(id: number): Promise<void> {
-    const url = `${this.usersUrl}/${id}`;
-    return this.http.delete(url, { headers: this.headers })
-      .toPromise()
-      .then(() => null)
-      .catch(this.handleError);
+  create(user: User) {
+    return this.http
+      .post(this.usersUrl, user);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('Error', error);
-    return Promise.reject(error.message || error);
-  }
 }

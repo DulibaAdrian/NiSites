@@ -16,10 +16,6 @@ export class UserDetailsComponent {
 
   constructor(private userDataService: UserDataService) { }
 
-  delete(): void {
-    this.userDataService.delete(this.user.id).then(() => this.goBack());
-  }
-
   goBack(): void {
     window.location.replace('');
   }

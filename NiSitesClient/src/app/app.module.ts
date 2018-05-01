@@ -9,6 +9,9 @@ import {UserDetailsComponent} from './user-details/user-details.component';
 import {UsersComponent} from './users/users.component';
 import {UserDataService} from './user.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AlertService } from './alert/alert.service';
 
 import {enableProdMode} from '@angular/core';
 
@@ -16,7 +19,9 @@ import {enableProdMode} from '@angular/core';
   declarations: [
     AppComponent,
     UserDetailsComponent,
-    UsersComponent
+    UsersComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,7 @@ import {enableProdMode} from '@angular/core';
     AppRoutingModule,
    NgbModule.forRoot()
   ],
-  providers: [UserDataService],
+  providers: [UserDataService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
