@@ -12,12 +12,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertService } from './alert/alert.service';
+import { HomeComponent } from './home/home.component';
+import { AuthenticationService } from './authentication/authentication.service';
 
 import {enableProdMode} from '@angular/core';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     UserDetailsComponent,
     UsersComponent,
     LoginComponent,
@@ -30,7 +33,7 @@ import {enableProdMode} from '@angular/core';
     AppRoutingModule,
    NgbModule.forRoot()
   ],
-  providers: [UserDataService, AlertService],
+  providers: [UserDataService, AlertService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

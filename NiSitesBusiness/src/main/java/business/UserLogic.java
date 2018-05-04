@@ -33,22 +33,32 @@ public class UserLogic {
 	public void editUser(@RequestBody UserDTO userDTO) {
 		this.restTemplate.put(this.userUrl, userDTO, UserDTO.class);
 	}
-	
+
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserById(@PathVariable UUID userId) {
 		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + userId.toString(), UserDTO.class);
 		return userDTO;
 	}
 
-	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserByEmail(@PathVariable String email) {
 		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "email/" + email, UserDTO.class);
 		return userDTO;
 	}
 
-	@RequestMapping(value = "/name/{userName}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/name/{userName}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
 	public UserDTO getUserByName(@PathVariable String userName) {
 		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "name/" + userName, UserDTO.class);
+		return userDTO;
+	}
+
+	@RequestMapping(value = "/email/{email}/password/{password}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public UserDTO getUserByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
+		UserDTO userDTO = this.restTemplate.getForObject(this.userUrl + "email/" + email + "/password/" + password,
+				UserDTO.class);
 		return userDTO;
 	}
 }

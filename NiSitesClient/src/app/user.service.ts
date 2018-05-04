@@ -22,4 +22,8 @@ export class UserDataService {
       .post(this.usersUrl, user);
   }
 
+  authenticate(user: User) {
+    return this.http
+      .post(this.usersUrl +"authenticate", user);
+  }
 }

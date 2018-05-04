@@ -64,6 +64,17 @@ public class UserController {
 		return userDTO;
 	}
 
+	@RequestMapping(value = "/email/{email}/password/{password}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public UserDTO getUserByEmailAndPassword(@PathVariable String email, @PathVariable String password) {
+		User user = this.userRepository.findByEmailAndPassword(email, password);
+		if (user == null) {
+			return null;
+		}
+		UserDTO userDTO = ModelMapperConfigurations.mapUserHelper(user);
+		return userDTO;
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void addUser(@RequestBody UserDTO userDTO) {
 		User user = ModelMapperConfigurations.map(userDTO, User.class);
