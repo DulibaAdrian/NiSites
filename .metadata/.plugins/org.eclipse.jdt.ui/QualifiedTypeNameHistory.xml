@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
-<fullyQualifiedTypeName name="javax.persistence.ManyToMany"/>
-<fullyQualifiedTypeName name="interfaces.IUserRepository"/>
 <fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.ObjectIdGenerators"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityInfo"/>
@@ -29,18 +26,14 @@
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonAutoDetect"/>
 <fullyQualifiedTypeName name="entities.domain.Site"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
 <fullyQualifiedTypeName name="org.modelmapper.convention.MatchingStrategies"/>
 <fullyQualifiedTypeName name="java.util.Collection"/>
-<fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="entities.domain.Page"/>
 <fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
 <fullyQualifiedTypeName name="Mapper.ModelMapperConfigurations"/>
-<fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="org.springframework.boot.builder.SpringApplicationBuilder"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="business.DTO.SiteDTO"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="repository.interfaces.ICustomUserRepository"/>
@@ -59,5 +52,12 @@
 <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
 <fullyQualifiedTypeName name="models.UserModel"/>
 <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+<fullyQualifiedTypeName name="models.SiteModel"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.hibernate.mapping.Set"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="dto.SiteDTO"/>
+<fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="dto.UserDTO"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

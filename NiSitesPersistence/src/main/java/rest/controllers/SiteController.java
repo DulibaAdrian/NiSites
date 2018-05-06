@@ -1,6 +1,7 @@
 package rest.controllers;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
 import dto.SiteDTO;
+import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;
@@ -29,9 +31,14 @@ public class SiteController {
 	@Autowired
 	private IUserRepository userRepository;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public List<SiteDTO> getSitesList() {
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<SiteDTO> getSitesList(@PathVariable UUID userId) {
 		List<Site> siteList = this.siteRepository.findAll();
+		for (int i = 0; i < siteList.size(); i++) {
+			if (!siteList.get(i).getUserList().contains(userRepository.getOne(userId))) {
+				siteList.remove(i);
+			}
+		}
 		List<SiteDTO> siteListDTO = ModelMapperConfigurations.mapAll(siteList, SiteDTO.class);
 		for (int i = 0; i < siteListDTO.size(); i++) {
 			ModelMapperConfigurations.mapSiteHelper(siteListDTO.get(i), siteList.get(i));
@@ -43,7 +50,7 @@ public class SiteController {
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();
 		homePage.setPageNumber(1);
-		homePage.setContent(				
+		homePage.setContent(
 				"<!DOCTYPE html><html><head><title>Home Page</title></head>" + "<body>" + "</body>" + "</html>");
 		Site site = ModelMapperConfigurations.map(siteDTO, Site.class);
 		homePage.setSite(site);

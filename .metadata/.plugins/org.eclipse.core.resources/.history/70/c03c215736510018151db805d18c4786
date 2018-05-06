@@ -1,0 +1,14 @@
+package presentation;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+@RequestMapping("/api/presentation/site")
+public class SiteController {
+	
+	String userUrl = "http://localhost:8081/api/business/site/";
+	RestTemplate restTemplate = new RestTemplate();
+
+}

@@ -7,7 +7,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {UserDetailsComponent} from './user-details/user-details.component';
 import {UsersComponent} from './users/users.component';
-import {UserDataService} from './user.service';
+import {UserDataService} from './users/user.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';

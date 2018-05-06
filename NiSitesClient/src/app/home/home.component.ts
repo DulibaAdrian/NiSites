@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { User } from '../user';
-import { UserDataService } from '../user.service';
+import { User } from '../users/user';
+import { UserDataService } from '../users/user.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 

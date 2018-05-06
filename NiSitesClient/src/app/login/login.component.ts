@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from '../alert/alert.service';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { User } from '../user';
+import { User } from '../users/user';
 
 
 @Component({
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authenticationService.logout();
-
   }
 
   login() {

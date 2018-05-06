@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 
-import { User } from '../user';
-import { UserDataService } from '../user.service';
+import { User } from '../users/user';
+import { UserDataService } from '../users/user.service';
 
 @Component({
   selector: 'user-detail',
