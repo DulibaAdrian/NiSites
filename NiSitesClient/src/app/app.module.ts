@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {UserDetailsComponent} from './user-details/user-details.component';
 import {UsersComponent} from './users/users.component';
 import {UserDataService} from './users/user.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,7 +20,6 @@ import {enableProdMode} from '@angular/core';
   declarations: [
     AppComponent,
     HomeComponent,
-    UserDetailsComponent,
     UsersComponent,
     LoginComponent,
     RegisterComponent

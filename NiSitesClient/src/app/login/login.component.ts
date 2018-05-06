@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
       .subscribe(
       (data: any) => {
         //login succeed
-          localStorage.setItem('currentUser', JSON.stringify(data));
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        debugger;
           this.router.navigate(['/home']);
         },
         err => {
