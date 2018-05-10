@@ -1,25 +1,32 @@
-﻿
-
-<navbar></navbar>
+﻿<navbar></navbar>
 <div class="container">
   <div class="page-header">
     <h1 class="title">Sites</h1>
   </div>
   <div class="input-url">
     <div class="form-group">
-      <form #f="ngForm" (ngSubmit)="saveSite(siteName)">
+      <form #f="ngForm" (ngSubmit)="f.form.valid && saveSite(siteName)">
         <div class="form-group">
           <button class="btn btn-danger">Create</button>
         </div>
-        <div class="form-group">
-          <input type="text" id="siteName" class="form-control" name="siteName" [(ngModel)]="siteName" required size="30" placeholder="Insert your site name here"/>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !siteName.valid }">
+          <input type="text" id="siteName" class="form-control" name="siteName" [(ngModel)]="siteName" size="30" placeholder="Insert your site name here" required />
         </div>
       </form>
     </div>
   </div>
+  <div class="home-navigation">
+    <div style="margin-bottom: 12px;">
+      My sites in niSites.ro
+    </div>
+    <div>
+      Deleted sites
+    </div>
+  </div>
 
-  <p class="sites-list" *ngFor="let site of sites">
+  <div class="sites-list" *ngFor="let site of sites">
     <a href={{site.url}}>{{site.siteName}}</a><br>
-    {{site.url}}
-  </p>
+    {{site.url}} <div> <span class="creation-date">Created at: {{site.creationDate | date: 'dd/MM/yyyy HH:mm:s'}}</span></div>
+  </div>
+
 </div>

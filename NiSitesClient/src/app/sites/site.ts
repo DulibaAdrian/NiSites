@@ -3,7 +3,7 @@
 export class Site {
 
   public id: string;
-  public creationDate: string;
+  public creationDate: Date;
   public url: string;
   public siteName: string;
   public pages : Page[];

@@ -10,6 +10,7 @@
 .sites-list {
   position: relative;
   margin-left: 200px;
+  margin-bottom: 20px;
 }
 
 .input-url {
@@ -22,4 +23,15 @@
   position: absolute;
   width: 20%;
   top: 50px;
+}
+
+.creation-date {
+  font-size: 12px;
+  color: grey;
+}
+
+.home-navigation {
+  right: 140px;
+  position: relative;
+  top: 170px;
 }
