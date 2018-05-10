@@ -1,0 +1,25 @@
+﻿.btn-danger {
+  float: left;
+}
+
+.title {
+  color: red;
+  font-size: 20px;
+}
+
+.sites-list {
+  position: relative;
+  margin-left: 200px;
+}
+
+.input-url {
+  position: relative;
+  top: 50px;
+  right: 75px;
+}
+
+.form-control {
+  position: absolute;
+  width: 20%;
+  top: 50px;
+}

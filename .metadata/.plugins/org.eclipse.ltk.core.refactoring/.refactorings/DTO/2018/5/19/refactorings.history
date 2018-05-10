@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;dto.SiteDTO.siteName&apos; in &apos;dto.SiteDTO&apos;&#x0D;&#x0A;- Original project: &apos;DTO&apos;&#x0D;&#x0A;- Original element: &apos;dto.SiteDTO.siteName&apos;&#x0D;&#x0A;- Getter method name: &apos;getSiteName&apos;&#x0D;&#x0A;- Setter method name: &apos;setSiteName&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;siteName&apos;" flags="589830" getter="getSiteName" id="org.eclipse.jdt.ui.self.encapsulate" input="/src\/main\/java&lt;dto{SiteDTO.java[SiteDTO^siteName" insertion="10" setter="setSiteName" stamp="1525897613716" version="1.0" visibility="1"/>
+</session>

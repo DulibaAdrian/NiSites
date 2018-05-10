@@ -19,14 +19,25 @@ public class SiteLogic {
 	String siteUrl = "http://localhost:8080/api/repository/site/";
 	RestTemplate restTemplate = new RestTemplate();
 
+	public String getSiteName(String url) {
+		int startIndex = url.lastIndexOf('/');
+		String name = url.substring(startIndex + 1, url.length());
+		return name;
+	}
+
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public SiteDTO[] getSiteList(@PathVariable UUID userId) {
 		SiteDTO[] listSites = this.restTemplate.getForObject(this.siteUrl + userId.toString(), SiteDTO[].class);
+		for (SiteDTO site : listSites) {
+			site.setSiteName(getSiteName(site.getUrl()));
+		}
 		return listSites;
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDto) {
+		String siteName = siteDto.getUrl();
+		siteDto.setUrl("https://sites.niSites.com/" + siteName);
 		this.restTemplate.postForEntity(this.siteUrl + userId.toString(), siteDto, SiteDTO.class);
 	}
 

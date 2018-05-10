@@ -1,8 +1,25 @@
-﻿<div class="col-md-6 col-md-offset-3">
-  <h3>All registered users:</h3>
-  <ul>
-    <li *ngFor="let user of users">
-      {{user.name}} ({{user.email}} {{user.password}})
-    </li>
-  </ul>
+﻿
+
+<navbar></navbar>
+<div class="container">
+  <div class="page-header">
+    <h1 class="title">Sites</h1>
+  </div>
+  <div class="input-url">
+    <div class="form-group">
+      <form #f="ngForm" (ngSubmit)="saveSite(siteName)">
+        <div class="form-group">
+          <button class="btn btn-danger">Create</button>
+        </div>
+        <div class="form-group">
+          <input type="text" id="siteName" class="form-control" name="siteName" [(ngModel)]="siteName" required size="30" placeholder="Insert your site name here"/>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p class="sites-list" *ngFor="let site of sites">
+    <a href={{site.url}}>{{site.siteName}}</a><br>
+    {{site.url}}
+  </p>
 </div>

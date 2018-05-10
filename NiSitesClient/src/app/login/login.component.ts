@@ -1,9 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertService } from '../alert/alert.service';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { User } from '../users/user';
-
 
 @Component({
   templateUrl: './login.component.html'
@@ -15,7 +13,6 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
     private authenticationService: AuthenticationService

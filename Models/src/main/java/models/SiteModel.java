@@ -9,6 +9,7 @@ public class SiteModel {
 	private UUID id;
 	private String url;
 	private Date creationDate;
+	private String siteName;
 	private Set<UserModel> userList;
 	private Set<PageModel> pageList;
 	
@@ -56,5 +57,13 @@ public class SiteModel {
 
 	public void setPageList(Set<PageModel> pageList) {
 		this.pageList = pageList;
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 }

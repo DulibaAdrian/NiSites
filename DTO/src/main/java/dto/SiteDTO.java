@@ -10,6 +10,7 @@ public class SiteDTO {
 	
 	private UUID id;
 	private String url;
+	private String siteName;
 	private Date creationDate;
 	private Set<UserDTO> userList;
 	private Set<PageDTO> pageList;
@@ -58,5 +59,13 @@ public class SiteDTO {
 
 	public void setPageList(Set<PageDTO> pageList) {
 		this.pageList = pageList;
+	}
+
+	public String getSiteName() {
+		return siteName;
+	}
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
 }
