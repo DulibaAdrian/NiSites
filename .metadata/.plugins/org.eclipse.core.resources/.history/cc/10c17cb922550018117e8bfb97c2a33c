@@ -1,0 +1,14 @@
+package repository.interfaces;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class SiteRepositoryCustom implements ISiteRepositoryCustom {
+
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import entities.domain.Site;
 
 @Repository
-public interface ISiteRepository extends JpaRepository<Site, UUID> {
+public interface ISiteRepository extends JpaRepository<Site, UUID>{
 
 }

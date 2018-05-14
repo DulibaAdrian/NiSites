@@ -16,17 +16,24 @@ import { Router} from '@angular/router';
 export class HomeComponent implements OnInit {
   currentUser: User;
   sites: Site[] = [];
-
+  deletedSites: boolean = false;
   constructor(private siteService: SiteDataService, private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
-    this.loadAllSites();
+    this.deletedSites = false;
+    this.loadAllSites(this.deletedSites);
   }
 
-  private loadAllSites() {
-    this.siteService.getSites(this.currentUser.id)
+
+  getRemovedSites() {
+    this.deletedSites = true;
+    this.loadAllSites(this.deletedSites);
+  }
+
+  private loadAllSites(deletedSites: boolean) {
+    this.siteService.getSites(this.currentUser.id, deletedSites)
       .map((data: any) => data.json())
       .subscribe(
       (data: any) => {
@@ -37,6 +44,19 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  removeSite(siteId: string) {
+    debugger;
+    console.log(siteId);
+    this.siteService.remove(siteId)
+      .subscribe(
+      data => {
+        this.loadAllSites(this.deletedSites);
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
   saveSite(siteName: string) {
 
     var site = new Site();
@@ -44,22 +64,10 @@ export class HomeComponent implements OnInit {
     this.siteService.create(site, this.currentUser.id)
       .subscribe(
       data => {
-        this.onRefresh();
+        this.loadAllSites(this.deletedSites);
       },
       error => {
         console.log(error);
-      });
-  }
-
-  onRefresh() {
-    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
-
-    let currentUrl = this.router.url + '?';
-
-    this.router.navigateByUrl(currentUrl)
-      .then(() => {
-        this.router.navigated = false;
-        this.router.navigate([this.router.url]);
       });
   }
 }

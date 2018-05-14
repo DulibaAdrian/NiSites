@@ -26,10 +26,12 @@ public class SiteController {
 	public void deleteSite(@PathVariable UUID siteId) {
 		this.restTemplate.delete(this.siteUrl + siteId.toString());
 	}
-	
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public SiteModel[] getSiteList(@PathVariable UUID userId) {
-		SiteModel[] listSites = this.restTemplate.getForObject(this.siteUrl + userId.toString(), SiteModel[].class);
+
+	@RequestMapping(value = "/{userId}/{deletedSites}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public SiteModel[] getSiteList(@PathVariable UUID userId, @PathVariable boolean deletedSites) {
+		SiteModel[] listSites = this.restTemplate.getForObject(this.siteUrl + userId.toString() + "/" + deletedSites,
+				SiteModel[].class);
 		return listSites;
 	}
 }

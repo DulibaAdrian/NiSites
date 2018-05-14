@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;entities.domain.Site.isDeleted&apos; in &apos;entities.domain.Site&apos;&#x0D;&#x0A;- Original project: &apos;Entities&apos;&#x0D;&#x0A;- Original element: &apos;entities.domain.Site.isDeleted&apos;&#x0D;&#x0A;- Getter method name: &apos;isDeleted&apos;&#x0D;&#x0A;- Setter method name: &apos;setDeleted&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;isDeleted&apos;" flags="589830" getter="isDeleted" id="org.eclipse.jdt.ui.self.encapsulate" input="/src\/main\/java&lt;entities.domain{Site.java[Site^isDeleted" insertion="10" setter="setDeleted" stamp="1526046931509" version="1.0" visibility="1"/>
+</session>

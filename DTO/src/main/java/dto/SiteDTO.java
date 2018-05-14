@@ -14,6 +14,7 @@ public class SiteDTO {
 	private Date creationDate;
 	private Set<UserDTO> userList;
 	private Set<PageDTO> pageList;
+	private boolean isDeleted;
 	
 	public SiteDTO() {
 		this.setUserList(new HashSet<UserDTO>());
@@ -67,5 +68,13 @@ public class SiteDTO {
 
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

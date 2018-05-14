@@ -6,5 +6,6 @@ export class Site {
   public creationDate: Date;
   public url: string;
   public siteName: string;
-  public pages : Page[];
+  public pages: Page[];
+  public isDeleted: boolean;
 }

@@ -10,7 +10,7 @@ import repository.interfaces.ISiteRepository;
 import repository.interfaces.IUserRepository;
 
 @SpringBootApplication
-@ComponentScan(basePackages = { "rest.controllers" })
+@ComponentScan(basePackages = { "rest.controllers", "repository.implementations"})
 @EntityScan({ "entities.domain" })
 @EnableJpaRepositories(basePackageClasses = { IUserRepository.class, IPageRepository.class,
 		ISiteRepository.class }, considerNestedRepositories = true)

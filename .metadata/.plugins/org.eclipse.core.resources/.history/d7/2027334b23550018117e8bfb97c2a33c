@@ -1,0 +1,7 @@
+package repository.interfaces;
+
+import entities.domain.Site;
+
+public interface ISiteRepositoryCustom {
+	public void remove(Site site);
+}

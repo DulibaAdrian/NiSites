@@ -16,17 +16,21 @@
     </div>
   </div>
   <div class="home-navigation">
-    <div style="margin-bottom: 12px;">
+    <div style="margin-bottom: 12px;" (click)="ngOnInit()">
       My sites in niSites.ro
     </div>
-    <div>
+    <div (click)="getRemovedSites()">
       Deleted sites
     </div>
   </div>
 
   <div class="sites-list" *ngFor="let site of sites">
-    <a href={{site.url}}>{{site.siteName}}</a><br>
+    <a href={{site.url}}  ng-style="{'.disabled': site.deleted}" >{{site.siteName}}</a>
+      <div class="glyphicon glyphicon-remove remove" *ngIf="!site.deleted" (click)="removeSite(site.id)"></div>
+    <br>
+
     {{site.url}} <div> <span class="creation-date">Created at: {{site.creationDate | date: 'dd/MM/yyyy HH:mm:s'}}</span></div>
+
   </div>
 
 </div>

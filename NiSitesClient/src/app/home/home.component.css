@@ -35,3 +35,9 @@
   position: relative;
   top: 170px;
 }
+
+.remove {
+  float: right;
+  margin-right: 600px;
+  color: red;
+}

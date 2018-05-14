@@ -61,7 +61,9 @@ public class SiteController {
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
 	public void deleteSite(@PathVariable UUID siteId) {
-		this.siteRepository.delete(siteId);
+		Site site=siteRepository.getOne(siteId);
+		site.setDeleted(true);
+		this.siteRepository.save(site);
 	}
 
 }

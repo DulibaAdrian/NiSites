@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class User {
 	private String email;
 	private String password;
 	private Date creationDate;
-	@ManyToMany(mappedBy = "userList", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "userList", cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Set<Site> sites;
 

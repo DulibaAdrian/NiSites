@@ -13,14 +13,17 @@ export class SiteDataService {
 
   constructor(private http: Http) { }
 
-  getSites(id: string) {
-    return this.http.get(this.sitesUrl + id);
+  getSites(id: string, deletedSites: boolean) {
+    return this.http.get(this.sitesUrl + id + "/" + deletedSites);
   }
 
   create(site: Site, userId: string) {
-    debugger;
     return this.http
       .post(this.sitesUrl + userId, site);
+  }
+
+  remove(siteId: string) {
+    return this.http.delete(this.sitesUrl + siteId);
   }
 
 }

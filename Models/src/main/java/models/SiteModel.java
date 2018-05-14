@@ -12,8 +12,9 @@ public class SiteModel {
 	private String siteName;
 	private Set<UserModel> userList;
 	private Set<PageModel> pageList;
-	
-	public SiteModel() {
+	private boolean isDeleted;
+
+	SiteModel() {
 		this.setUserList(new HashSet<UserModel>());
 		this.setPageList(new HashSet<PageModel>());
 		this.setCreationDate(new Date());
@@ -65,5 +66,13 @@ public class SiteModel {
 
 	public void setSiteName(String siteName) {
 		this.siteName = siteName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

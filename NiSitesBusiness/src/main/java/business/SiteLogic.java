@@ -1,5 +1,6 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,13 +25,24 @@ public class SiteLogic {
 		return name;
 	}
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public SiteDTO[] getSiteList(@PathVariable UUID userId) {
+	@RequestMapping(value = "/{userId}/{deletedSites}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ArrayList<SiteDTO> getSiteList(@PathVariable UUID userId,@PathVariable boolean deletedSites) {
 		SiteDTO[] listSites = this.restTemplate.getForObject(this.siteUrl + userId.toString(), SiteDTO[].class);
+		ArrayList<SiteDTO> list = new ArrayList<SiteDTO>();
 		for (SiteDTO site : listSites) {
-			site.setSiteName(getSiteName(site.getUrl()));
+			if (deletedSites == false) {
+				if (site.isDeleted() == false) {
+					site.setSiteName(getSiteName(site.getUrl()));
+					list.add(site);
+				}
+			}else{
+				if (site.isDeleted() != false) {
+					site.setSiteName(getSiteName(site.getUrl()));
+					list.add(site);
+				}
+			}
 		}
-		return listSites;
+		return list;
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
