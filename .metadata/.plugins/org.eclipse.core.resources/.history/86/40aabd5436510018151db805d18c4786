@@ -1,9 +1,0 @@
-package presentation;
-
-import org.springframework.web.client.RestTemplate;
-
-public class SiteController {
-	String userUrl = "http://localhost:8081/api/business/site/";
-	RestTemplate restTemplate = new RestTemplate();
-
-}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
 import dto.SiteDTO;
+import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;
@@ -59,9 +60,22 @@ public class SiteController {
 		this.pageRepository.save(homePage);
 	}
 
+	@RequestMapping(value = "/getSiteById/{siteId}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public SiteDTO getSiteById(@PathVariable UUID siteId) {
+		Site site = this.siteRepository.findOne(siteId);
+		if (site == null) {
+			return null;
+		}
+		SiteDTO siteDTO = new SiteDTO();
+		siteDTO = ModelMapperConfigurations.map(site, SiteDTO.class);
+		ModelMapperConfigurations.mapSiteHelper(siteDTO, site);
+		return siteDTO;
+	}
+
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)
 	public void deleteSite(@PathVariable UUID siteId) {
-		Site site=siteRepository.getOne(siteId);
+		Site site = siteRepository.getOne(siteId);
 		site.setDeleted(true);
 		this.siteRepository.save(site);
 	}

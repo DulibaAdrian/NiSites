@@ -1,5 +1,8 @@
 package rest.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
 import dto.PageDTO;
+import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
+import entities.domain.User;
 import repository.interfaces.IPageRepository;
 import repository.interfaces.ISiteRepository;
 
@@ -22,6 +27,16 @@ public class PageController {
 	private IPageRepository pageRepository;
 	@Autowired
 	private ISiteRepository siteRepository;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public List<PageDTO> getPagesList() {
+		List<Page> pageList = this.pageRepository.findAll();
+		List<PageDTO> pageListDTO = new ArrayList<>();
+		for (int i = 0; i < pageList.size(); i++) {
+			pageListDTO.add(ModelMapperConfigurations.mapPageHelper(pageList.get(i)));
+		}
+		return pageListDTO;
+	}
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.GET)
 	public PageDTO getPageById(@PathVariable UUID pageId) {
