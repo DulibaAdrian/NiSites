@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
 import dto.SiteDTO;
-import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
 import entities.domain.User;
@@ -48,7 +47,7 @@ public class SiteController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();
-		homePage.setPageNumber(1);
+		homePage.setPageName("HomePage");
 		homePage.setContent(
 				"<!DOCTYPE html><html><head><title>Home Page</title></head>" + "<body>" + "</body>" + "</html>");
 		Site site = ModelMapperConfigurations.map(siteDTO, Site.class);
@@ -80,4 +79,14 @@ public class SiteController {
 		this.siteRepository.save(site);
 	}
 
+	@RequestMapping(value = "/{siteId}", method = RequestMethod.PUT)
+	public void editSite(@PathVariable UUID siteId, @RequestBody SiteDTO newSite) {
+		Site site = this.siteRepository.findOne(siteId);
+		if (site == null) {
+			return;
+		}
+		ModelMapperConfigurations.mapSiteHelper(newSite, site);
+		site.setId(siteId);
+		this.siteRepository.save(site);
+	}
 }

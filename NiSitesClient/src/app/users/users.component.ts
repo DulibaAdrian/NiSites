@@ -19,7 +19,4 @@ export class UsersComponent implements OnInit {
     this.getUsers();
   }
 
-  onSelect(user: User): void {
-    this.selectedUser = user;
-  }
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
 <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
 <fullyQualifiedTypeName name="javax.management.Query"/>
 <fullyQualifiedTypeName name="org.hibernate.Query"/>
@@ -40,12 +39,9 @@
 <fullyQualifiedTypeName name="models.UserModel"/>
 <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
 <fullyQualifiedTypeName name="models.SiteModel"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.hibernate.mapping.Set"/>
-<fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="dto.UserDTO"/>
-<fullyQualifiedTypeName name="dto.SiteDTO"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.TimeZone"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="org.springframework.test.annotation.Commit"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
 <fullyQualifiedTypeName name="entities.domain.Site"/>
+<fullyQualifiedTypeName name="dto.SiteDTO"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="models.PageModel"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

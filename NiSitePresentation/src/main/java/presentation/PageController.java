@@ -27,4 +27,9 @@ public class PageController {
 		PageModel[] listPages = this.restTemplate.getForObject(this.pageUrl + siteId.toString(), PageModel[].class);
 		return listPages;
 	}
+	
+	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
+	public void editPage(@PathVariable UUID pageId, @RequestBody PageModel pageModel) {
+		this.restTemplate.put(this.pageUrl + pageId.toString(), pageModel, PageModel.class);
+	}
 }

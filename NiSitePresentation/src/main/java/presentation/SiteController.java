@@ -34,4 +34,13 @@ public class SiteController {
 				SiteModel[].class);
 		return listSites;
 	}
+
+	@RequestMapping(value = "/getSiteById/{siteId}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public SiteModel getSiteById(@PathVariable UUID siteId) {
+		SiteModel siteModel = this.restTemplate.getForObject(this.siteUrl + "getSiteById/" + siteId.toString(),
+				SiteModel.class);
+		return siteModel;
+	}
+
 }

@@ -7,7 +7,7 @@ public class PageModel {
 	private UUID id;
 	private String content;
 	private Date creationDate;
-	private Integer pageNumber;
+	private String pageName;
 	private SiteModel site;
 
 	public PageModel() {
@@ -38,19 +38,19 @@ public class PageModel {
 		this.creationDate = creationDate;
 	}
 
-	public Integer getPageNumber() {
-		return pageNumber;
-	}
-
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
-	}
-
 	public SiteModel getSite() {
 		return site;
 	}
 
 	public void setSite(SiteModel site) {
 		this.site = site;
+	}
+
+	public String getPageName() {
+		return pageName;
+	}
+
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
 	}
 }

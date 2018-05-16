@@ -25,7 +25,7 @@
   </div>
 
   <div class="sites-list" *ngFor="let site of sites">
-    <a href={{site.url}}  ng-style="{'.disabled': site.deleted}" >{{site.siteName}}</a>
+    <a (click)="goToSitePages(site.id)">{{site.siteName}}</a>
       <div class="glyphicon glyphicon-remove remove" *ngIf="!site.deleted" (click)="removeSite(site.id)"></div>
     <br>
 

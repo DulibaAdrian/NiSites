@@ -2,7 +2,6 @@ package rest.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import Mapper.ModelMapperConfigurations;
 import dto.PageDTO;
-import dto.UserDTO;
 import entities.domain.Page;
 import entities.domain.Site;
-import entities.domain.User;
 import repository.interfaces.IPageRepository;
 import repository.interfaces.ISiteRepository;
 

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import dto.SiteDTO;
 
 @RestController
@@ -25,8 +24,9 @@ public class SiteLogic {
 		return name;
 	}
 
-	@RequestMapping(value = "/{userId}/{deletedSites}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ArrayList<SiteDTO> getSiteList(@PathVariable UUID userId,@PathVariable boolean deletedSites) {
+	@RequestMapping(value = "/{userId}/{deletedSites}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ArrayList<SiteDTO> getSiteList(@PathVariable UUID userId, @PathVariable boolean deletedSites) {
 		SiteDTO[] listSites = this.restTemplate.getForObject(this.siteUrl + userId.toString(), SiteDTO[].class);
 		ArrayList<SiteDTO> list = new ArrayList<SiteDTO>();
 		for (SiteDTO site : listSites) {
@@ -35,7 +35,7 @@ public class SiteLogic {
 					site.setSiteName(getSiteName(site.getUrl()));
 					list.add(site);
 				}
-			}else{
+			} else {
 				if (site.isDeleted() != false) {
 					site.setSiteName(getSiteName(site.getUrl()));
 					list.add(site);
@@ -54,6 +54,14 @@ public class SiteLogic {
 		} else {
 			return;
 		}
+	}
+
+	@RequestMapping(value = "/getSiteById/{siteId}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public SiteDTO getSiteById(@PathVariable UUID siteId) {
+		SiteDTO siteDTO = this.restTemplate.getForObject(this.siteUrl + "getSiteById/" + siteId.toString(),
+				SiteDTO.class);
+		return siteDTO;
 	}
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.DELETE)

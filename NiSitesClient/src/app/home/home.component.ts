@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit {
     this.loadAllSites(this.deletedSites);
   }
 
+  goToSitePages(siteId) {
+    debugger;
+    this.router.navigate(['/site-pages', siteId]);
+  }
+
   private loadAllSites(deletedSites: boolean) {
     this.siteService.getSites(this.currentUser.id, deletedSites)
       .map((data: any) => data.json())

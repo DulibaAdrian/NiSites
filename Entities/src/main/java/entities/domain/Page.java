@@ -23,7 +23,7 @@ public class Page {
 	private UUID id;
 	private String content;
 	private Date creationDate;
-	private Integer pageNumber;
+	private String pageName;
 	
 	@ManyToOne(cascade={CascadeType.ALL })
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -65,11 +65,11 @@ public class Page {
 		this.site = site;
 	}
 
-	public Integer getPageNumber() {
-		return this.pageNumber;
+	public String getPageName() {
+		return pageName;
 	}
 
-	public void setPageNumber(Integer pageNumber) {
-		this.pageNumber = pageNumber;
+	public void setPageName(String pageName) {
+		this.pageName = pageName;
 	}
 }
