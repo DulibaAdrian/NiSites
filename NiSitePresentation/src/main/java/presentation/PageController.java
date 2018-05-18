@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import dto.PageDTO;
 import models.PageModel;
 
 @RestController
@@ -36,5 +38,13 @@ public class PageController {
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
 	public void deletePage(@PathVariable UUID pageId) {
 		this.restTemplate.delete(this.pageUrl + pageId.toString());
+	}
+	
+	@RequestMapping(value = "/getPageById/{pageId}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public PageModel getPageById(@PathVariable UUID pageId) {
+		PageModel pageModel = this.restTemplate.getForObject(this.pageUrl + "getPageById/" + pageId.toString(),
+				PageModel.class);
+		return pageModel;
 	}
 }

@@ -35,7 +35,7 @@ public class PageController {
 		return pageListDTO;
 	}
 
-	@RequestMapping(value = "/{pageId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getPageById/{pageId}", method = RequestMethod.GET)
 	public PageDTO getPageById(@PathVariable UUID pageId) {
 		Page page = pageRepository.findOne(pageId);
 		PageDTO pageDTO = ModelMapperConfigurations.mapPageHelper(page);

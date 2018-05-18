@@ -14,6 +14,10 @@ export class PageDataService {
     return this.http.get(this.pageUrl + siteId);
   }
 
+  getPageById(pageId: string) {
+    return this.http.get(this.pageUrl + "getPageById/" + pageId);
+  }
+
   create(page: Page, siteId: string) {
     debugger;
     return this.http

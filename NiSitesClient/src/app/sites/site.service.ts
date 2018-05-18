@@ -18,7 +18,6 @@ export class SiteDataService {
   }
 
   getSiteById(id: string) {
-    debugger;
     return this.http.get(this.sitesUrl + "getSiteById/" + id);
   }
 

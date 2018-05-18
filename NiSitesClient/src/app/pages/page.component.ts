@@ -17,7 +17,7 @@ export class PagesComponent implements OnInit {
   private sub: any;
   site: Site;
   pages: Page[];
-  content: string;
+  currentPage: Page;
 
   constructor(private pageDataService: PageDataService, private route: ActivatedRoute, private siteDataService: SiteDataService) { }
 
@@ -78,7 +78,16 @@ export class PagesComponent implements OnInit {
   }
 
   showPageContent(pageId: string) {
-
+    this.pageDataService.getPageById(pageId)
+      .map((data: any) => data.json())
+      .subscribe(
+      (data) => {
+        debugger;
+          this.currentPage = data;
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   ngOnDestroy() {
