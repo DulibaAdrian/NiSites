@@ -1,0 +1,17 @@
+﻿.title {
+  font-size: 28px;
+}
+
+.remove {
+  top: 3px;
+  color: red;
+}
+
+.form-control {
+  width: 30%;
+}
+
+.pages-list {
+  margin-bottom: 7px;
+  position: relative;
+}

@@ -9,6 +9,7 @@ public class PageModel {
 	private Date creationDate;
 	private String pageName;
 	private SiteModel site;
+	private boolean isDeleted;
 
 	public PageModel() {
 		this.creationDate = new Date();
@@ -52,5 +53,13 @@ public class PageModel {
 
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

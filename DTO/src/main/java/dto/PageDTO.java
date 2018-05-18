@@ -10,6 +10,7 @@ public class PageDTO {
 	private Date creationDate;
 	private String pageName;
 	private SiteDTO site;
+	private boolean isDeleted;
 
 	public PageDTO() {
 		this.creationDate = new Date();
@@ -53,6 +54,14 @@ public class PageDTO {
 
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 }

@@ -1,5 +1,7 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,6 +28,10 @@ public class PageLogic {
 
 	@RequestMapping(value = "/{siteId}", method = RequestMethod.POST)
 	public void addPage(@PathVariable UUID siteId, @RequestBody PageDTO pageDTO) {
+
+		if (pageDTO.getContent() == null) {
+			pageDTO.setContent("<!DOCTYPE html><html><body></body></html>");
+		}
 		this.restTemplate.postForEntity(this.pageUrl + siteId.toString(), pageDTO, PageDTO.class);
 	}
 
@@ -33,7 +39,13 @@ public class PageLogic {
 	public Set<PageDTO> getPagesBySite(@PathVariable UUID siteId) {
 		SiteDTO siteDTO = this.restTemplate.getForObject(this.siteUrl + "getSiteById/" + siteId.toString(),
 				SiteDTO.class);
-		return siteDTO.getPageList();
+		Set<PageDTO> pages = new HashSet<PageDTO>();
+		for (PageDTO page : siteDTO.getPageList()) {
+			if (page.isDeleted() == false) {
+				pages.add(page);
+			}
+		}
+		return pages;
 	}
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)

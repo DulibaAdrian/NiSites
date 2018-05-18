@@ -29,6 +29,9 @@ public class Page {
 	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	private Site site;
 
+	@Column(columnDefinition="boolean default false")
+	private boolean isDeleted;
+	
 	public Page() { 
 		this.creationDate = new Date();
 	}
@@ -71,5 +74,13 @@ public class Page {
 
 	public void setPageName(String pageName) {
 		this.pageName = pageName;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 }

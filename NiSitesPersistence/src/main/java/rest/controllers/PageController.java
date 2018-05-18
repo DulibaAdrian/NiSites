@@ -53,8 +53,9 @@ public class PageController {
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
 	public void deletePage(@PathVariable UUID pageId) {
-		this.pageRepository.delete(pageId);
-	}
+		Page page = this.pageRepository.getOne(pageId);
+		page.setDeleted(true);
+		this.pageRepository.save(page);	}
 
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
 	public void editPage(@PathVariable UUID pageId, @RequestBody PageDTO newPage) {

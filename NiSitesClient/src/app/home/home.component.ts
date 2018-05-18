@@ -6,7 +6,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Router} from '@angular/router';
 
-
 @Component({
   moduleId: module.id,
   templateUrl: 'home.component.html',
@@ -44,17 +43,14 @@ export class HomeComponent implements OnInit {
       (data: any) => {
         this.sites = data;
       },
-      err => console.log(err), // error
-      () => console.log('getUserStatus Complete') // complete
+      err => console.log(err)
       );
   }
 
   removeSite(siteId: string) {
-    debugger;
-    console.log(siteId);
     this.siteService.remove(siteId)
       .subscribe(
-      data => {
+      () => {
         this.loadAllSites(this.deletedSites);
       },
       error => {
@@ -68,7 +64,7 @@ export class HomeComponent implements OnInit {
     site.url = siteName;
     this.siteService.create(site, this.currentUser.id)
       .subscribe(
-      data => {
+        () => {
         this.loadAllSites(this.deletedSites);
       },
       error => {

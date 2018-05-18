@@ -9,6 +9,7 @@ export class AuthenticationService {
   constructor(private userService: UserDataService) { }
 
   login(email: string, password: string) {
+    debugger;
     var user = new User();
     user.email = email;
     user.password = password;

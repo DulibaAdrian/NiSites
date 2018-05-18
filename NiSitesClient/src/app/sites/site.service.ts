@@ -17,6 +17,11 @@ export class SiteDataService {
     return this.http.get(this.sitesUrl + id + "/" + deletedSites);
   }
 
+  getSiteById(id: string) {
+    debugger;
+    return this.http.get(this.sitesUrl + "getSiteById/" + id);
+  }
+
   create(site: Site, userId: string) {
     return this.http
       .post(this.sitesUrl + userId, site);

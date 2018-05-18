@@ -2,7 +2,24 @@
 
 <div class="container">
   <div class="page-header">
-    <h1 class="title">{{site.name}}</h1>
+    <h1 class="title">{{site.siteName}}</h1>
+  </div>
+  <form #f="ngForm" (ngSubmit)="f.form.valid && savePage(pageName)">
+    <div class="form-group">
+      <button class="btn btn-danger">Create</button>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !pageName.valid }">
+      <input type="text" id="pageName" class="form-control" name="pageName" [(ngModel)]="pageName" size="30" placeholder="Insert your page name here" required />
+    </div>
+  </form>
+  <div class="pages-list" *ngFor="let page of pages">
+    <a (click)="showPageContent(page.id)">{{page.pageName}}</a>
+    <div class="glyphicon glyphicon-remove remove" (click)="removePage(page.id)"></div>
+    <br>
+  </div>
+
+  <div>
+
   </div>
 
 </div>

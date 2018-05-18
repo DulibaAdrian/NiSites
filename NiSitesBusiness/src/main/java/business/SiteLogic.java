@@ -61,6 +61,7 @@ public class SiteLogic {
 	public SiteDTO getSiteById(@PathVariable UUID siteId) {
 		SiteDTO siteDTO = this.restTemplate.getForObject(this.siteUrl + "getSiteById/" + siteId.toString(),
 				SiteDTO.class);
+		siteDTO.setSiteName(getSiteName(siteDTO.getUrl()));
 		return siteDTO;
 	}
 

@@ -32,4 +32,9 @@ public class PageController {
 	public void editPage(@PathVariable UUID pageId, @RequestBody PageModel pageModel) {
 		this.restTemplate.put(this.pageUrl + pageId.toString(), pageModel, PageModel.class);
 	}
+	
+	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
+	public void deletePage(@PathVariable UUID pageId) {
+		this.restTemplate.delete(this.pageUrl + pageId.toString());
+	}
 }

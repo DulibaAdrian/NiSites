@@ -15,8 +15,13 @@ export class PageDataService {
   }
 
   create(page: Page, siteId: string) {
+    debugger;
     return this.http
       .post(this.pageUrl + siteId, page);
+  }
+
+  remove(pageId: string) {
+    return this.http.delete(this.pageUrl + pageId);
   }
 
 }
