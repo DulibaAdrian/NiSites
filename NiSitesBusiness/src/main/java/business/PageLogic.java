@@ -26,7 +26,15 @@ public class PageLogic {
 	public void addPage(@PathVariable UUID siteId, @RequestBody PageDTO pageDTO) {
 
 		if (pageDTO.getContent() == null) {
-			pageDTO.setContent("<!DOCTYPE html><html><body></body></html>");
+			pageDTO.setContent("<body>Default body</body>");
+		} else {
+			pageDTO.setContent("<body>" + pageDTO.getContent() + "</body>");
+		}
+		if (pageDTO.getPageName() == null) {
+			pageDTO.setPageName("<head>Default Page Name</head>");
+		} else {
+			pageDTO.setPageName("<head>" + pageDTO.getPageName() + "</head>");
+
 		}
 		this.restTemplate.postForEntity(this.pageUrl + siteId.toString(), pageDTO, PageDTO.class);
 	}
@@ -51,14 +59,19 @@ public class PageLogic {
 				PageDTO.class);
 		return pageDTO;
 	}
-	
+
 	@RequestMapping(value = "/{pageId}", method = RequestMethod.DELETE)
 	public void deletePage(@PathVariable UUID pageId) {
 		this.restTemplate.delete(this.pageUrl + pageId.toString());
 	}
 
-	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
-	public void editPage(@PathVariable UUID pageId, @RequestBody PageDTO pageDTO) {
-		this.restTemplate.put(this.pageUrl + pageId.toString(), pageDTO, PageDTO.class);
+	@RequestMapping(value = "/editPageContent/{pageId}", method = RequestMethod.PUT)
+	public void editPageContent(@PathVariable UUID pageId, @RequestBody String pageConetnt) {
+		this.restTemplate.put(this.pageUrl + "editPageContent/" + pageId.toString(), pageConetnt, String.class);
+	}
+
+	@RequestMapping(value = "/editPageHeader/{pageId}", method = RequestMethod.PUT)
+	public void editPageHeader(@PathVariable UUID pageId, @RequestBody String pageHeader) {
+		this.restTemplate.put(this.pageUrl + "editPageHeader/" + pageId.toString(), pageHeader, String.class);
 	}
 }

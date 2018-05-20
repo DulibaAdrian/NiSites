@@ -55,16 +55,26 @@ public class PageController {
 	public void deletePage(@PathVariable UUID pageId) {
 		Page page = this.pageRepository.getOne(pageId);
 		page.setDeleted(true);
-		this.pageRepository.save(page);	}
+		this.pageRepository.save(page);
+	}
 
-	@RequestMapping(value = "/{pageId}", method = RequestMethod.PUT)
-	public void editPage(@PathVariable UUID pageId, @RequestBody PageDTO newPage) {
-		Page page = this.pageRepository.findOne(pageId);
+	@RequestMapping(value = "/editPageContent/{pageId}", method = RequestMethod.PUT)
+	public void editPageContent(@PathVariable UUID pageId, @RequestBody String pageConetnt) {
+		Page page = this.pageRepository.getOne(pageId);
 		if (page == null) {
 			return;
 		}
-		ModelMapperConfigurations.map(newPage, page);
-		page.setId(pageId);
+		page.setContent(pageConetnt);
+		this.pageRepository.save(page);
+	}
+
+	@RequestMapping(value = "/editPageHeader/{pageId}", method = RequestMethod.PUT)
+	public void editPageHeader(@PathVariable UUID pageId, @RequestBody String pageHeader) {
+		Page page = this.pageRepository.getOne(pageId);
+		if (page == null) {
+			return;
+		}
+		page.setPageName(pageHeader);
 		this.pageRepository.save(page);
 	}
 }

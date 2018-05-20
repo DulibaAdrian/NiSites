@@ -12,7 +12,15 @@
 }
 
 .site-content {
+  margin-left: 30pc;
+  position: relative;
+  bottom: 100px;
+}
 
+.site-header {
+  margin-left: 30pc;
+  position: relative;
+  bottom: 120px;
 }
 
 .pages-list {

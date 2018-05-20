@@ -47,4 +47,14 @@ public class PageController {
 				PageModel.class);
 		return pageModel;
 	}
+	
+	@RequestMapping(value = "/editPageContent/{pageId}", method = RequestMethod.PUT)
+	public void editPageContent(@PathVariable UUID pageId, @RequestBody String pageConetnt) {
+		this.restTemplate.put(this.pageUrl + "editPageContent/" + pageId.toString(), pageConetnt, String.class);
+	}
+
+	@RequestMapping(value = "/editPageHeader/{pageId}", method = RequestMethod.PUT)
+	public void editPageHeader(@PathVariable UUID pageId, @RequestBody String pageHeader) {
+		this.restTemplate.put(this.pageUrl + "editPageHeader/" + pageId.toString(), pageHeader, String.class);
+	}
 }

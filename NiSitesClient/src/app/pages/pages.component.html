@@ -13,13 +13,35 @@
     </div>
   </form>
   <div class="pages-list" *ngFor="let page of pages">
-    <a (click)="showPageContent(page.id)">{{page.pageName}}</a>
+    <a (click)="showPageContent(page.id)" [innerHTML]="page.pageName"></a>
     <div class="glyphicon glyphicon-remove remove" (click)="removePage(page.id)"></div>
     <br>
   </div>
+  
+  <div class="site-header">
+    <div [hidden]="headerEditorEnabled">
+      <span [innerHTML]="currentPage.pageName">    </span>
+      <span (click)="enableHeaderEditor()" class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div *ngIf="headerEditorEnabled">
+      <input type="text" id="PageName" name="PageName" [(ngModel)]="PageName" ng-show="headerEditorEnabled" value="{{currentPage.pageName}}">
+      <span (click)="editHeader(PageName)">Save</span>
+      or
+      <span (click)="disableHeaderEditor()">Cancel</span>.
+    </div>
+  </div>
 
   <div class="site-content">
-    {{currentPage.content}}
+    <div [hidden]="editorEnabled">
+      <span [innerHTML]="currentPage.content">    </span>
+      <span (click)="enableEditor()" class="glyphicon glyphicon-pencil"></span>
+    </div>
+    <div *ngIf="editorEnabled">
+      <input type="text" id="content" name="content" [(ngModel)]="content" ng-show="editorEnabled" value="{{currentPage.content}}">
+      <span (click)="editContent(content)">Save</span>
+      or
+      <span (click)="disableEditor()">Cancel</span>.
+    </div>
   </div>
 
 </div>

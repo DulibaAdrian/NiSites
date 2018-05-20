@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthenticationService } from './authentication/authentication.service';
 import {enableProdMode} from '@angular/core';
+import { SafePipe } from './safe.pipe'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {enableProdMode} from '@angular/core';
     PagesComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

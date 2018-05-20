@@ -18,6 +18,8 @@ export class PagesComponent implements OnInit {
   site: Site;
   pages: Page[];
   currentPage: Page;
+  editorEnabled: boolean;
+  headerEditorEnabled: boolean;
 
   constructor(private pageDataService: PageDataService, private route: ActivatedRoute, private siteDataService: SiteDataService) { }
 
@@ -28,6 +30,7 @@ export class PagesComponent implements OnInit {
       (data: any) => {
         debugger;
         this.pages = data;
+        this.showPageContent(this.pages[0].id);
       },
       err => console.log(err)
       );
@@ -56,12 +59,12 @@ export class PagesComponent implements OnInit {
   removePage(pageId: string) {
     this.pageDataService.remove(pageId)
       .subscribe(
-        () => {
-          this.getPages();
-        },
-        error => {
-          console.log(error);
-        });
+      () => {
+        this.getPages();
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   savePage(pageName: string) {
@@ -77,17 +80,58 @@ export class PagesComponent implements OnInit {
       });
   }
 
-  showPageContent(pageId: string) {
-    this.pageDataService.getPageById(pageId)
+  enableHeaderEditor(content) {
+    this.headerEditorEnabled = true;
+  }
+  disableHeaderEditor() {
+    this.headerEditorEnabled = false;
+  }
+
+  enableEditor(pageName) {
+    this.editorEnabled = true;
+  }
+  disableEditor() {
+    this.editorEnabled = false;
+  }
+
+  editContent(content) {
+    this.currentPage.content = content;
+    this.disableEditor();
+    this.pageDataService.editPageContent(this.currentPage.id, content)
       .map((data: any) => data.json())
       .subscribe(
-      (data) => {
-        debugger;
+        (data) => {
           this.currentPage = data;
         },
         error => {
           console.log(error);
         });
+  };
+
+  editHeader(header) {
+    this.currentPage.pageName = header;
+    this.disableHeaderEditor();
+    this.pageDataService.editPageHeader(this.currentPage.id, header)
+      .map((data: any) => data.json())
+      .subscribe(
+        (data) => {
+          this.currentPage = data;
+        },
+        error => {
+          console.log(error);
+        });
+  };
+
+  showPageContent(pageId: string) {
+    this.pageDataService.getPageById(pageId)
+      .map((data: any) => data.json())
+      .subscribe(
+      (data) => {
+        this.currentPage = data;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   ngOnDestroy() {

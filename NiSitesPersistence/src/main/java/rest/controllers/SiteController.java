@@ -47,9 +47,8 @@ public class SiteController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();
-		homePage.setPageName("HomePage");
-		homePage.setContent(
-				"<!DOCTYPE html><html><head><title>Home Page</title></head>" + "<body>" + "</body>" + "</html>");
+		homePage.setPageName("<header>HomePage</header>");
+		homePage.setContent("<body>Deafult body</body>");
 		Site site = ModelMapperConfigurations.map(siteDTO, Site.class);
 		homePage.setSite(site);
 		User user = this.userRepository.findOne(userId);

@@ -19,7 +19,6 @@ export class PageDataService {
   }
 
   create(page: Page, siteId: string) {
-    debugger;
     return this.http
       .post(this.pageUrl + siteId, page);
   }
@@ -28,4 +27,11 @@ export class PageDataService {
     return this.http.delete(this.pageUrl + pageId);
   }
 
+  editPageContent(pageId: string, pageContent: string) {
+    return this.http.put(this.pageUrl + "editPageContent/" + pageId, pageContent);
+  }
+
+  editPageHeader(pageId: string, pageHeader: string) {
+    return this.http.put(this.pageUrl + "editPageHeader/" + pageId, pageHeader);
+  }
 }
