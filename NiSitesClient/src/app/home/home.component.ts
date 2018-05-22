@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
     this.loadAllSites(this.deletedSites);
   }
 
-
   getRemovedSites() {
     this.deletedSites = true;
     this.loadAllSites(this.deletedSites);
@@ -60,7 +59,6 @@ export class HomeComponent implements OnInit {
         err => console.log(err)
     );
     this.canBeDeleted = true;
-
   }
 
   removeSite(siteId: string) {
