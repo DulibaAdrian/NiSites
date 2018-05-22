@@ -13,14 +13,12 @@
 
 .site-content {
   margin-left: 30pc;
-  position: relative;
-  bottom: 100px;
+  margin-top: 30px;
 }
 
 .site-header {
   margin-left: 30pc;
-  position: relative;
-  bottom: 120px;
+  margin-top: -40px;
 }
 
 .pages-list {
