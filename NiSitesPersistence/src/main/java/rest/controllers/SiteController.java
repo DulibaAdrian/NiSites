@@ -44,6 +44,16 @@ public class SiteController {
 		return siteListDTO;
 	}
 
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public List<SiteDTO> getAllSites() {
+		List<Site> siteList = this.siteRepository.findAll();
+		List<SiteDTO> siteListDTO = ModelMapperConfigurations.mapAll(siteList, SiteDTO.class);
+		for (int i = 0; i < siteListDTO.size(); i++) {
+			ModelMapperConfigurations.mapSiteHelper(siteListDTO.get(i), siteList.get(i));
+		}
+		return siteListDTO;
+	}
+
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();

@@ -17,6 +17,9 @@ export class SiteDataService {
     return this.http.get(this.sitesUrl + id + "/" + deletedSites);
   }
 
+  getAllSites(deletedSites: boolean) {
+    return this.http.get(this.sitesUrl + deletedSites);
+  }
   getSiteById(id: string) {
     return this.http.get(this.sitesUrl + "getSiteById/" + id);
   }

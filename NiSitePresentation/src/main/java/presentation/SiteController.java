@@ -35,6 +35,13 @@ public class SiteController {
 		return listSites;
 	}
 
+	@RequestMapping(value = "/{deletedSites}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public SiteModel[] getSiteList(@PathVariable boolean deletedSites) {
+		SiteModel[] listSites = this.restTemplate.getForObject(this.siteUrl + deletedSites, SiteModel[].class);
+		return listSites;
+	}
+
 	@RequestMapping(value = "/getSiteById/{siteId}", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
 	public SiteModel getSiteById(@PathVariable UUID siteId) {

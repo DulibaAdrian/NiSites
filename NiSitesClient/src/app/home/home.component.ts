@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   sites: Site[] = [];
   deletedSites: boolean = false;
+
   constructor(private siteService: SiteDataService, private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -36,26 +37,37 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/site-pages', siteId]);
   }
 
+  getSites() {
+    this.siteService.getAllSites(false)
+      .map((data: any) => data.json())
+      .subscribe(
+        (data: any) => {
+          this.sites = data;
+        },
+        err => console.log(err)
+      );
+  }
+
   private loadAllSites(deletedSites: boolean) {
     this.siteService.getSites(this.currentUser.id, deletedSites)
       .map((data: any) => data.json())
       .subscribe(
-      (data: any) => {
-        this.sites = data;
-      },
-      err => console.log(err)
+        (data: any) => {
+          this.sites = data;
+        },
+        err => console.log(err)
       );
   }
 
   removeSite(siteId: string) {
     this.siteService.remove(siteId)
       .subscribe(
-      () => {
-        this.loadAllSites(this.deletedSites);
-      },
-      error => {
-        console.log(error);
-      });
+        () => {
+          this.loadAllSites(this.deletedSites);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   saveSite(siteName: string) {
@@ -65,10 +77,10 @@ export class HomeComponent implements OnInit {
     this.siteService.create(site, this.currentUser.id)
       .subscribe(
         () => {
-        this.loadAllSites(this.deletedSites);
-      },
-      error => {
-        console.log(error);
-      });
+          this.loadAllSites(this.deletedSites);
+        },
+        error => {
+          console.log(error);
+        });
   }
 }

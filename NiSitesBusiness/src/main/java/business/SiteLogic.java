@@ -45,6 +45,27 @@ public class SiteLogic {
 		return list;
 	}
 
+	@RequestMapping(value = "/{deletedSites}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ArrayList<SiteDTO> getAllSitea(@PathVariable boolean deletedSites) {
+		SiteDTO[] listSites = this.restTemplate.getForObject(this.siteUrl, SiteDTO[].class);
+		ArrayList<SiteDTO> list = new ArrayList<SiteDTO>();
+		for (SiteDTO site : listSites) {
+			if (deletedSites == false) {
+				if (site.isDeleted() == false) {
+					site.setSiteName(getSiteName(site.getUrl()));
+					list.add(site);
+				}
+			} else {
+				if (site.isDeleted() != false) {
+					site.setSiteName(getSiteName(site.getUrl()));
+					list.add(site);
+				}
+			}
+		}
+		return list;
+	}
+
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDto) {
 		String siteName = siteDto.getUrl();

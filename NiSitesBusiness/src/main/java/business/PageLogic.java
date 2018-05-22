@@ -67,11 +67,13 @@ public class PageLogic {
 
 	@RequestMapping(value = "/editPageContent/{pageId}", method = RequestMethod.PUT)
 	public void editPageContent(@PathVariable UUID pageId, @RequestBody String pageConetnt) {
+		pageConetnt = "<body>" + pageConetnt + "</body>";
 		this.restTemplate.put(this.pageUrl + "editPageContent/" + pageId.toString(), pageConetnt, String.class);
 	}
 
 	@RequestMapping(value = "/editPageHeader/{pageId}", method = RequestMethod.PUT)
 	public void editPageHeader(@PathVariable UUID pageId, @RequestBody String pageHeader) {
+		pageHeader = "<head>" + pageHeader + "</head>";
 		this.restTemplate.put(this.pageUrl + "editPageHeader/" + pageId.toString(), pageHeader, String.class);
 	}
 }

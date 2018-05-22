@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Page } from './page';
 import { Site } from '../sites/site';
+import { User } from '../users/user';
 import { PageDataService } from './page.service';
 import { SiteDataService } from '../sites/site.service';
 
@@ -20,6 +21,8 @@ export class PagesComponent implements OnInit {
   currentPage: Page;
   editorEnabled: boolean;
   headerEditorEnabled: boolean;
+  currentUser: User;
+  canEditOrDelete = false;
 
   constructor(private pageDataService: PageDataService, private route: ActivatedRoute, private siteDataService: SiteDataService) { }
 
@@ -28,7 +31,6 @@ export class PagesComponent implements OnInit {
       .map((data: any) => data.json())
       .subscribe(
       (data: any) => {
-        debugger;
         this.pages = data;
         this.showPageContent(this.pages[0].id);
       },
@@ -41,8 +43,13 @@ export class PagesComponent implements OnInit {
       .map((data: any) => data.json())
       .subscribe(
       (data: any) => {
-        debugger;
         this.site = data;
+        debugger;
+        for (var user of data.userList) {
+          if (user.id === this.currentUser.id) {
+            this.canEditOrDelete = true;
+          }
+        }
       },
       err => console.log(err)
       );
@@ -51,6 +58,7 @@ export class PagesComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.siteId = params['siteId'];
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.getSite();
       this.getPages();
     });
@@ -100,12 +108,12 @@ export class PagesComponent implements OnInit {
     this.pageDataService.editPageContent(this.currentPage.id, content)
       .map((data: any) => data.json())
       .subscribe(
-        (data) => {
-          this.currentPage = data;
-        },
-        error => {
-          console.log(error);
-        });
+      (data) => {
+        this.currentPage = data;
+      },
+      error => {
+        console.log(error);
+      });
   };
 
   editHeader(header) {
@@ -114,12 +122,12 @@ export class PagesComponent implements OnInit {
     this.pageDataService.editPageHeader(this.currentPage.id, header)
       .map((data: any) => data.json())
       .subscribe(
-        (data) => {
-          this.currentPage = data;
-        },
-        error => {
-          console.log(error);
-        });
+      (data) => {
+        this.currentPage = data;
+      },
+      error => {
+        console.log(error);
+      });
   };
 
   showPageContent(pageId: string) {
