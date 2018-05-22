@@ -59,7 +59,7 @@ public class SiteController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
 	public void addSite(@PathVariable UUID userId, @RequestBody SiteDTO siteDTO) {
 		Page homePage = new Page();
-		homePage.setPageName("<header>HomePage</header>");
+		homePage.setPageName("<head>HomePage</head>");
 		homePage.setContent("<body>Deafult body</body>");
 		Site site = ModelMapperConfigurations.map(siteDTO, Site.class);
 		homePage.setSite(site);

@@ -1,0 +1,31 @@
+package business;
+
+import java.nio.charset.Charset;
+
+import javax.mail.internet.InternetAddress;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.common.collect.Lists;
+
+import it.ozimov.springboot.mail.model.Email;
+import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
+
+
+public class SendEmail {
+
+	@Autowired
+	public EmailService emailService;
+	
+	public void sendEmail(){
+		   final Email email = DefaultEmail.builder()
+		        .from(new InternetAddress("mymail@mail.co.uk"))
+		        .replyTo(new InternetAddress("someone@localhost"))
+		        .to(Lists.newArrayList(new InternetAddress("someone@localhost")))
+		        .subject("Lorem ipsum")
+		        .body("Lorem ipsum dolor sit amet [...]")
+		        .encoding(Charset.forName("UTF-8")).build();
+
+		   emailService.send(email);
+		}
+}

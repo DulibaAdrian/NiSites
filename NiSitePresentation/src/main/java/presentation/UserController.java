@@ -67,4 +67,13 @@ public class UserController {
 		return userModel;
 	}
 
+	@RequestMapping(value = "/sendMail/user/{user}/password/{password}/to/{to}/subject/{subject}/text/{text}", method = RequestMethod.GET, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+
+	private void sendEmail(@PathVariable String user, @PathVariable String password, @PathVariable String to,
+			@PathVariable String subject, @PathVariable String text) {
+		this.restTemplate.getForObject(this.userUrl + "/sendMail/user/" + user + "/password/" + password + "/to/" + to
+				+ "/subject/" + subject + "/text/" + text, String.class);
+	}
+
 }

@@ -1,0 +1,9 @@
+package business;
+
+
+@Autowired
+public EmailService emailService;
+
+public class SendEmail {
+
+}

@@ -14,6 +14,11 @@ export class UserDataService {
     return this.http.get(this.usersUrl);
   }
 
+  sendMail(user: string, password: string, to: string, subject: string, text: string) {
+    return this.http.get(this.usersUrl + "sendMail/user/" + user + "/password/" + password + "/to/" + to
+      + "/subject/" + subject + "/text/" + text);
+  }
+
   create(user: User) {
     return this.http
       .post(this.usersUrl, user);
@@ -21,6 +26,6 @@ export class UserDataService {
 
   authenticate(user: User) {
     return this.http
-      .post(this.usersUrl +"authenticate", user);
+      .post(this.usersUrl + "authenticate", user);
   }
 }

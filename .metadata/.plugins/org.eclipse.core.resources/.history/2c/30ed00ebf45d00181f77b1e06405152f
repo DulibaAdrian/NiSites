@@ -1,0 +1,27 @@
+package run;
+
+import java.util.HashMap;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.ComponentScan;
+
+import it.ozimov.springboot.mail.configuration.EnableEmailTools;
+
+@SpringBootApplication
+@ComponentScan(basePackages ={"business"})
+@EntityScan({"dto"})
+@EnableEmailTools
+public class StartBusiness {
+
+	public static void main(String[] args) {
+
+		HashMap<String, Object> props = new HashMap<>();
+		props.put("server.port", 8081);
+
+		new SpringApplicationBuilder()
+		    .sources(StartBusiness.class)                
+		    .properties(props)
+		    .run(args);
+	}
+}

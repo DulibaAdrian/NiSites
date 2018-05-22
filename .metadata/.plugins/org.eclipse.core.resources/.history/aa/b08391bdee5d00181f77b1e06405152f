@@ -1,0 +1,26 @@
+package business;
+
+import it.ozimov.springboot.mail.model.Email;
+import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
+import it.ozimov.springboot.mail.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import static com.google.common.collect.Lists.newArrayList;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import java.io.UnsupportedEncodingException;
+
+public class SendEmail {
+
+	@Autowired
+	public EmailService emailService;
+
+	public static void sendMail() throws UnsupportedEncodingException, AddressException {
+		final Email email = DefaultEmail.builder().from(new InternetAddress("hari.seldon@gmail.com"))
+				.to(newArrayList(new InternetAddress("the-real-cleon@trantor.gov")))
+				.subject("You shall die! It's not me, it's Psychohistory").body("Hello Planet!").encoding("UTF-8")
+				.build();
+
+		emailService.send(email);
+	}
+}
