@@ -1,5 +1,6 @@
 package rest.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,15 @@ public class SiteController {
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public List<SiteDTO> getSitesList(@PathVariable UUID userId) {
 		List<Site> siteList = this.siteRepository.findAll();
-		for (int i = 0; i < siteList.size(); i++) {
-			if (!siteList.get(i).getUserList().contains(userRepository.getOne(userId))) {
-				siteList.remove(i);
+		List<SiteDTO> siteListDTO=new ArrayList<>();
+		for (Site site: siteList) {
+			for(User user : site.getUserList()){
+				if(user.getId().equals(userId)){
+					SiteDTO siteDto = ModelMapperConfigurations.map(site, SiteDTO.class);
+					ModelMapperConfigurations.mapSiteHelper(siteDto, site);
+					siteListDTO.add(siteDto);
+				}
 			}
-		}
-		List<SiteDTO> siteListDTO = ModelMapperConfigurations.mapAll(siteList, SiteDTO.class);
-		for (int i = 0; i < siteListDTO.size(); i++) {
-			ModelMapperConfigurations.mapSiteHelper(siteListDTO.get(i), siteList.get(i));
 		}
 		return siteListDTO;
 	}
