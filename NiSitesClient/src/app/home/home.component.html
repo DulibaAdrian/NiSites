@@ -29,7 +29,7 @@
 
   <div class="sites-list" *ngFor="let site of sites">
     <a (click)="goToSitePages(site.id)">{{site.siteName}}</a>
-    <div *ngIf="!site.deleted" class="glyphicon glyphicon-remove remove" (click)="removeSite(site.id)"></div>
+    <div *ngIf="!site.deleted && canBeDeleted" class="glyphicon glyphicon-remove remove" (click)="removeSite(site.id)"></div>
     <br>
 
     {{site.url}} <div> <span class="creation-date">Created at: {{site.creationDate | date: 'dd/MM/yyyy HH:mm:s'}}</span></div>

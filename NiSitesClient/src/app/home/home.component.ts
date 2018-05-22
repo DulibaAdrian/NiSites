@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   sites: Site[] = [];
   deletedSites: boolean = false;
+  canBeDeleted = true;
 
   constructor(private siteService: SiteDataService, private router: Router) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
           this.sites = data;
         },
         err => console.log(err)
-      );
+    );
+    this.canBeDeleted = false;
   }
 
   private loadAllSites(deletedSites: boolean) {
@@ -56,7 +58,9 @@ export class HomeComponent implements OnInit {
           this.sites = data;
         },
         err => console.log(err)
-      );
+    );
+    this.canBeDeleted = true;
+
   }
 
   removeSite(siteId: string) {
